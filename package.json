@@ -1,0 +1,19 @@
+{
+  "name": "animal-app",
+  "version": "1.0.0",
+  "description": "picture picking game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Radosław Śliwa",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-watch": "^5.0.0"
+  }
+}
