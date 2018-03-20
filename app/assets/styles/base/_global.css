@@ -12,3 +12,55 @@ img{
 * {
   box-sizing: border-box;
 }
+
+
+/*---------------GAME*/
+#game-wrapper{
+  max-width: 2000px;
+  padding: 5px;
+}
+.btn{
+  border: black 1px solid;
+  width: 20%;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+#start{
+  font-weight: bold;
+}
+
+/*----------------------------GAME BEGINS*/
+#gamearea{
+
+}
+
+#find-me{
+
+}
+#message{
+  display: block;
+}
+
+#output{
+  width:80%;
+  margin: 0 auto;
+}
+
+
+.row{
+  border: black 1px solid;
+
+  background-color: yellow;
+
+
+}
+.cell{
+  border: black 1px solid;
+  width:25%;
+  height: 150px;
+  display: inline-block;
+  text-align: center;
+
+}

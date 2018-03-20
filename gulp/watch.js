@@ -16,19 +16,16 @@ gulp.task('watch', function(){
     browserSync.reload();
   });
 
-
-  watch('./app/assets/scripts/**/*.js', function(){
-
-    browserSync.reload();
-  });
-
   watch('./app/assets/styles/**/*.css', function(){
     gulp.start('cssInject');
   });
 
-
+  watch('./app/assets/scripts/**/*.js', function(){
+    return gulp.src('./app/assets/scripts/**/*.js')
+    .pipe(gulp.dest('./app/temp/scripts'));
+    browserSync.reload();
+  });
 });
-
 
 gulp.task('cssInject',['styles'], function(){
   return gulp.src('./app/temp/styles/styles.css')
