@@ -1,0 +1,74 @@
+
+/*---------------GAME*/
+
+#start{
+  font-weight: bold;
+}
+
+/*----------------------------GAME BEGINS*/
+.gamearea{
+
+  &__columns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > div{
+      display: inline-block;
+      margin: 2%;
+    }
+  }
+  &__pointer{
+    background-color: #4D81BF;
+  /*width: 150px; */
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+
+  &:after{
+    color: #4D81BF;
+  border-left: 20px solid;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -20px;
+  top:0;
+  }
+  }
+  &__picture{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    border: 6px solid rgba(255, 255, 255, .3);
+    box-shadow: 0px 5px 18px 1px black;
+  }
+}
+
+
+/*----------------------------GAME BOARD*/
+.board{
+  width:80%;
+  margin: 0 auto;
+
+}
+.row{
+  background-color: yellow;
+
+
+}
+.cell{
+  border: black 1px solid;
+  width:25%;
+  height: 150px;
+  display: inline-block;
+  text-align: center;
+
+}
+
+
+#message{
+  display: block;
+}

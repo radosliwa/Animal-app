@@ -5,30 +5,41 @@ location.reload();
 */
 
 $(document).ready(function(){
-  $('#gamearea').hide();
-  $('#start').click(startGame);
+
+  var gameBegins = (function(){
+    $('.gamearea').hide();
+    $('#start').click(function(){startGame();});
+  })();
 
 
-  function startGame(){
+  var startGame = function(){
     showGallery();
-    //randomPick();
+    randomPicture();
     $('#start').hide();
-    $('#gamearea').show();
-  }
+    $('.gamearea').show();
+    $('#message').hide();
+  };
 
-  function showGallery(){
+  var showGallery = function (){
+    var animalNames = ['dog','racoon', 'cat'];
+    var i = 0;
     var x = 4;
     var html = '';
+
     for(row = 0; row<x; row++){
       html += '<div class= row>';
       for(cell=0; cell<x; cell++){
-        html += '<div class= cell>0</div>';
+        html += '<div class= cell>' + animalNames[i] + '</div>';
+        i++;
       }
       html += '</div>';
     }
-    $('#output').html(html);
+    $('.board').html(html);
   };
-  function randomPick(){
 
+  var randomPicture = function (){
+    var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'];
+    var index = Math.floor(Math.random() * animalGallery.length);
+    $('.animal').attr('src', animalGallery[index]);
   }
 });
