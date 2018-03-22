@@ -445,7 +445,10 @@ img{
   height: 150px;
   display: inline-block;
   text-align: center;
-
+/*  &:hover{
+    cursor: pointer;
+    background-color: rgba(229, 229, 229, 0.5);
+  }*/
 }
 
 #message{
