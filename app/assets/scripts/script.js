@@ -1,11 +1,14 @@
 
 $(function(){
 
-  //----------------GLOBAL ARRAYS
+  //-----------------------------------------GLOBAL ARRAYS
 
-  var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'];
-  var indexFirst = Math.floor(Math.random() * animalGallery.length);
+
+  var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
+  'assets/images/animal-cat.jpg'];
+  var index;
   var animalArray = ['dog','racoon', 'cat'];
+
 
   //-----------------------------------
 
@@ -19,13 +22,13 @@ $(function(){
 
   var startGame = function(){
 
-    showGallery();
-    getUserChoice();
+
     $('#start').hide();
     $('.gamearea').show();
-    $('.animal').attr('src', animalGallery[indexFirst]);
-    $('#message').hide();
-    console.log(indexFirst);
+    $('.message').hide();
+    showGallery();
+    getUserChoice();
+    //console.log(animalGallery[index]);
 
   };
 
@@ -46,62 +49,68 @@ $(function(){
     $('.board').html(html);
   };
 
+  //-------------------------------------USER ENGAGES
+
   var getUserChoice = function(){
+    showAnimal();
+
+
     $('.cell').click(function(){
-
       var userChoice = $(this).text();
-      //var index = Math.floor(Math.random() * animalGallery.length);
-      if(animalGallery[indexFirst].includes(userChoice)){
-        $('#message').show().text('good job!');
-        setTimeout(function (){$('#message').hide(1500)}, 500);
-        getUserNextChoice();
-      } else{
-        $('#message').show().text('wrong, try again!');
-        setTimeout(function (){$('#message').hide(1500)}, 500);
 
+      if(animalGallery[index].includes(userChoice)){
+        $('.cell').off('click');
+        $('.message').show().text('good job!').hide(700);
+        getUserNextChoice();
+
+      } else{
+        $('.message').show(900).text('wrong, try again!').hide(700);
       }
     });
   }
 
   var getUserNextChoice = function(){
-    var index = Math.floor(Math.random() * animalGallery.length);
-    $('.animal').attr('src', animalGallery[index])
+
+    animalGallery.splice(index,1) //----------TO AVOID REPEATS
+    showAnimal();
+    if(animalGallery.length<1){
+      $('.gamearea').fadeOut(1000);
+      setTimeout(function(){$('.finalMessage').css({display:"flex"}).show();}, 1000);
+      //$('.gamearea').css('display','hidden');
+    }
+    console.log(animalGallery);
+
+
     $('.cell').click(function(){
-
       var userChoice = $(this).text();
-      //var index = Math.floor(Math.random() * animalGallery.length);
-      if(animalGallery[index].includes(userChoice)){
-        $('#message').show().text('good job!');
-        setTimeout(function (){$('#message').hide(1500)}, 500);
 
+      if(animalGallery[index].includes(userChoice)){
+        $('.cell').off('click');
+        $('.message').show(900).text('good job!').hide(700);
         getUserNextChoice();
 
       } else{
-        $('#message').show().text('wrong, try again!');
-        setTimeout(function (){$('#message').hide(1500)}, 500);
-
-
-
+        $('.message').show(900).text('wrong, try again!').hide(700);
       }
-
     });
+
+
+
   }
 
-  /* var getNextChoice = function(){
 
-  $('.cell').click(function(){
-  var userChoice = $(this).data('id');
 
-  if(animalGallery[index].includes(userChoice)){
-  $('#message').show().text('good job!');
-  $('#message').hide(3000);
 
-  getUserNextChoice();
-} else{
-$('#message').show().text('wrong, try again!');
-}
 
-});
-}*/
+
+
+
+
+  var showAnimal = function(){
+    index = Math.floor(Math.random()*animalGallery.length);
+    $('.animal').attr('src',animalGallery[index]);
+    console.log(animalGallery[index]);
+  };
+
 
 });

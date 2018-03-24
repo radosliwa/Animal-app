@@ -2,6 +2,7 @@
 body{
   font-family: 'Merriweather', sans-serif;
   color: #333;
+
 }
 
 img{
@@ -14,14 +15,18 @@ img{
 }
 
 .wrapper{
+  position: relative;
+  background-color: green;
   overflow:hidden;
   padding-left: 18px;
   padding-right:18px;
   max-width: 1236px; /*to offset padding 18 x 2
-                      after border-box */
+                     after border-box */
   margin-left: auto;
   margin-right: auto;
-
+  top:0;
+  bottom:0;
+  height:100vh;
 
 }
 .btn{
