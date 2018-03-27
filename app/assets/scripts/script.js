@@ -21,15 +21,12 @@ $(function(){
 
 
   var startGame = function(){
-
-
     $('#start').hide();
     $('.gamearea').show();
     $('.message').hide();
     showGallery();
     getUserChoice();
     //console.log(animalGallery[index]);
-
   };
 
   var showGallery = function (){
@@ -54,17 +51,17 @@ $(function(){
   var getUserChoice = function(){
     showAnimal();
 
-
     $('.cell').click(function(){
       var userChoice = $(this).text();
 
       if(animalGallery[index].includes(userChoice)){
-        $('.cell').off('click');
-        $('.message').show().text('good job!').hide(700);
-        getUserNextChoice();
-
+        $('.cell').off('click').addClass('cell__non-hover');
+        $('.message').show(500).delay(800).text('good job!').hide(500);
+        setTimeout(function(){
+          $('.cell').removeClass('cell__non-hover');
+          getUserNextChoice();}, 1850);
       } else{
-        $('.message').show(900).text('wrong, try again!').hide(700);
+        $('.message').show(500).delay(800).text('wrong, try again!').hide(500);
       }
     });
   }
@@ -72,39 +69,35 @@ $(function(){
   var getUserNextChoice = function(){
 
     animalGallery.splice(index,1) //----------TO AVOID REPEATS
-    showAnimal();
-    if(animalGallery.length<1){
-      $('.gamearea').fadeOut(1000);
-      setTimeout(function(){$('.finalMessage').css({display:"flex"}).show();}, 1000);
-      //$('.gamearea').css('display','hidden');
-    }
-    console.log(animalGallery);
 
+    showAnimal();
+
+    if(animalGallery.length<1){     //---------GAME ENDS
+      $('.gamearea').fadeOut(1000);
+      setTimeout(function(){
+        $('.finalMessage').css({display:"flex"}).show().delay(2000).queue(function(){
+          location.reload(true);//from server, not cache
+        });
+      }, 1000);
+
+    }
+    //console.log(animalGallery);
 
     $('.cell').click(function(){
       var userChoice = $(this).text();
 
       if(animalGallery[index].includes(userChoice)){
-        $('.cell').off('click');
-        $('.message').show(900).text('good job!').hide(700);
-        getUserNextChoice();
-
+        $('.cell').off('click').addClass('cell__non-hover');
+        $('.message').show(500).delay(800).text('good job!').hide(500);
+        setTimeout(function(){
+          $('.cell').removeClass('cell__non-hover');
+          getUserNextChoice();}, 1850);
       } else{
-        $('.message').show(900).text('wrong, try again!').hide(700);
+        $('.message').show(500).delay(800).text('wrong, try again!').hide(500);
       }
     });
 
-
-
   }
-
-
-
-
-
-
-
-
 
   var showAnimal = function(){
     index = Math.floor(Math.random()*animalGallery.length);

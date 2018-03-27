@@ -458,6 +458,12 @@ img{
     background-color: rgba(229, 229, 229, 0.5);
   }
 
+.cell__non-hover:hover{
+    cursor:default;
+    background-color: inherit;
+
+  }
+
 .message{
   margin: 0 auto;
   display: block;
