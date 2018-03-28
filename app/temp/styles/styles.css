@@ -343,8 +343,6 @@ template {
 
 body{
   font-family: 'Merriweather', sans-serif;
-  color: #333;
-
 }
 
 img{
@@ -357,8 +355,10 @@ img{
 }
 
 .wrapper{
+  background: url('../../assets/images/background.jpg');
+  background-size: cover;
+  
   position: relative;
-  background-color: green;
   overflow:hidden;
   padding-left: 18px;
   padding-right:18px;
@@ -461,6 +461,10 @@ img{
 .cell__non-hover:hover{
     cursor:default;
     background-color: inherit;
+
+  }
+
+.cell__pictureFlip{
 
   }
 
