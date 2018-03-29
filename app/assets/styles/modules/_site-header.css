@@ -1,0 +1,17 @@
+.site-header{
+  background-color:black;
+  color: #FFF;
+  &__wrapper{
+    position: relative;
+    overflow:hidden;
+    padding-left: 18px;
+    padding-right:18px;
+    max-width: 1236px; /*to offset padding 18 x 2
+    after border-box */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &__logo{
+
+  }
+}

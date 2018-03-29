@@ -1,4 +1,3 @@
-
 $(function(){
 
   //-----------------------------------------GLOBAL ARRAYS
@@ -61,7 +60,7 @@ $(function(){
         $(".cell__pictureFlip").css({"background":'url('+ animalGallery[index] +') no-repeat center center'});
 
         setTimeout(()=>{   //otherwise 'this' would change to window object
-        $(this).removeClass('cell__non-hover cell__pictureFlip').attr('style', "");
+        $('.cell').removeClass('cell__non-hover cell__pictureFlip').attr('style', "");
         getUserNextChoice();}, 1850);
       } else{
         $('.message').show(500).delay(800).text('wrong, try again!').hide(500);

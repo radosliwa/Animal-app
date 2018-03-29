@@ -382,6 +382,26 @@ img{
   cursor: pointer;
 }
 
+.site-header{
+  background-color:black;
+  color: #FFF;
+}
+
+.site-header__wrapper{
+    position: relative;
+    overflow:hidden;
+    padding-left: 18px;
+    padding-right:18px;
+    max-width: 1236px; /*to offset padding 18 x 2
+    after border-box */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.site-header__logo{
+
+  }
+
 /*---------------GAME*/
 
 #start{
@@ -434,6 +454,8 @@ img{
 /*----------------------------GAME BOARD*/
 
 .board{
+  border: 6px solid rgba(255, 255, 255, .3);
+  box-shadow: 0px 5px 10px 3px black;
   width:50%;
   margin: 0 auto;
 
@@ -448,7 +470,7 @@ img{
 .cell{
   border: black 1px solid;
   width:25%;
-  height: 80px;
+  height: 100px;
   display: inline-block;
   text-align: center;
 }
@@ -466,6 +488,10 @@ img{
 
 .cell__pictureFlip{
 
+  }
+
+.cell__name{
+    width:inherit;
   }
 
 .message{
@@ -496,8 +522,8 @@ img{
   }
 
 .site-footer{
-background-color:black;
+  background-color:black;
   color: #FFF;
-  padding: .5rem 0;
+  padding: .5rem 18px .5rem 18px;
   text-align: center;
 }

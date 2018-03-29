@@ -51,6 +51,8 @@
 
 /*----------------------------GAME BOARD*/
 .board{
+  border: 6px solid rgba(255, 255, 255, .3);
+  box-shadow: 0px 5px 10px 3px black;
   width:50%;
   margin: 0 auto;
 
@@ -63,9 +65,10 @@
 .cell{
   border: black 1px solid;
   width:25%;
-  height: 80px;
+  height: 100px;
   display: inline-block;
   text-align: center;
+
   &:hover{
     cursor: pointer;
     background-color: rgba(229, 229, 229, 0.5);
@@ -77,6 +80,9 @@
   }
   &__pictureFlip{
 
+  }
+  &__name{
+    width:inherit;
   }
 }
 
