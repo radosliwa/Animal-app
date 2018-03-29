@@ -59,7 +59,7 @@ $(function(){
         $(this).addClass("cell__pictureFlip");
         $(".cell__pictureFlip").css({"background":'url('+ animalGallery[index] +') no-repeat center center'});
 
-        setTimeout(()=>{   //otherwise 'this' would change to window object
+        setTimeout(function(){
         $('.cell').removeClass('cell__non-hover cell__pictureFlip').attr('style', "");
         getUserNextChoice();}, 1850);
       } else{

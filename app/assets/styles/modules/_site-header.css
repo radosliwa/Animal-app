@@ -1,6 +1,11 @@
 .site-header{
   background-color:black;
   color: #FFF;
+  & > *{
+
+  }
+  @mixin clearfix;
+
   &__wrapper{
     position: relative;
     overflow:hidden;
@@ -12,6 +17,8 @@
     margin-right: auto;
   }
   &__logo{
+    display: inline-block;
+    height: 130px;
 
   }
 }

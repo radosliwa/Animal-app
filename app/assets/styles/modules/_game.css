@@ -3,6 +3,10 @@
 
 #start{
   font-weight: bold;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 
 /*----------------------------GAME BEGINS*/
@@ -55,19 +59,27 @@
   box-shadow: 0px 5px 10px 3px black;
   width:50%;
   margin: 0 auto;
-
+  border-radius: 10%;
+  height:50%;
+  overflow: hidden;
 }
-.row{
-  background-color: yellow;
 
+.row{
+
+  &:nth-of-type(1) > div{
+    border-top: red;
+  }
 
 }
 .cell{
+
   border: black 1px solid;
   width:25%;
-  height: 100px;
+  height: 84px;
   display: inline-block;
   text-align: center;
+
+
 
   &:hover{
     cursor: pointer;

@@ -355,14 +355,14 @@ img{
 }
 
 .wrapper{
-  background: url('../../assets/images/background.jpg');
+  background: url('../../assets/images/background.jpg') fixed;
   background-size: cover;
-  
   position: relative;
   overflow:hidden;
   padding-left: 18px;
   padding-right:18px;
   max-width: 1236px; /*to offset padding 18 x 2
+
                      after border-box */
   margin-left: auto;
   margin-right: auto;
@@ -387,6 +387,16 @@ img{
   color: #FFF;
 }
 
+.site-header > *{
+
+  }
+
+.site-header::after{
+    content:"";
+    display: table;
+    clear: both;
+  }
+
 .site-header__wrapper{
     position: relative;
     overflow:hidden;
@@ -399,6 +409,8 @@ img{
   }
 
 .site-header__logo{
+    display: inline-block;
+    height: 130px;
 
   }
 
@@ -406,6 +418,11 @@ img{
 
 #start{
   font-weight: bold;
+  position: absolute;
+  top:50%;
+  left:50%;
+  -webkit-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
 }
 
 /*----------------------------GAME BEGINS*/
@@ -458,19 +475,20 @@ img{
   box-shadow: 0px 5px 10px 3px black;
   width:50%;
   margin: 0 auto;
-
+  border-radius: 10%;
+  height:50%;
+  overflow: hidden;
 }
 
-.row{
-  background-color: yellow;
-
-
-}
+.row:nth-of-type(1) > div{
+    border-top: red;
+  }
 
 .cell{
+
   border: black 1px solid;
   width:25%;
-  height: 100px;
+  height: 84px;
   display: inline-block;
   text-align: center;
 }
