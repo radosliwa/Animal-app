@@ -37,7 +37,7 @@ $(function(){
     for(row = 0; row<x; row++){
       html += '<div class= row>';
       for(cell=0; cell<x; cell++){
-        html += '<div class= cell>' + animalNames[i] +'</div>';
+        html += '<div class= cell><span class= cell__text>' + animalNames[i] +'</span></div>';
         i++;
       }
       html += '</div>';
@@ -54,9 +54,10 @@ $(function(){
       var userChoice = $(this).text();
 
       if(animalGallery[index].includes(userChoice)){
+        $(this).addClass("cell__pictureFlip").children().css({"transform": "yellow"});
+
         $('.cell').off('click').addClass('cell__non-hover');
         $('.message').show(500).delay(800).text('good job!').hide(500);
-        $(this).addClass("cell__pictureFlip");
         $(".cell__pictureFlip").css({"background":'url('+ animalGallery[index] +') no-repeat center center'});
 
         setTimeout(function(){

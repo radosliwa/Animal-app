@@ -1,10 +1,12 @@
 
 body{
-  font-family: 'Merriweather', sans-serif;
+  font-family: 'Amaranth', sans-serif;
+
 }
 
 img{
   max-width: 100%;
+
   height: auto;
 }
 
@@ -13,21 +15,17 @@ img{
 }
 
 .wrapper{
-  background: url('../../assets/images/background.jpg') fixed;
-  background-size: cover;
+  background: url('../../assets/images/background.jpg') fixed center center;
+  background-size:auto;
   position: relative;
-  overflow:hidden;
   padding-left: 18px;
   padding-right:18px;
-  max-width: 1236px; /*to offset padding 18 x 2
-
-                     after border-box */
+  max-width: 2000px;
   margin-left: auto;
   margin-right: auto;
-  top:0;
-  bottom:0;
+  border:2px solid black;
   height:100vh;
-
+  overflow: hidden;
 }
 .btn{
   border: black 1px solid;
@@ -37,4 +35,5 @@ img{
   font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
+  
 }

@@ -1,14 +1,15 @@
 .site-header{
   background-color:black;
   color: #FFF;
+  height: 120px;
   & > *{
 
   }
   @mixin clearfix;
 
   &__wrapper{
-    position: relative;
-    overflow:hidden;
+    display:flex;
+  overflow: hidden;
     padding-left: 18px;
     padding-right:18px;
     max-width: 1236px; /*to offset padding 18 x 2
@@ -17,8 +18,13 @@
     margin-right: auto;
   }
   &__logo{
-    display: inline-block;
-    height: 130px;
-
+    display: block;
+    height: 156px;
+    left:50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin: -10px auto 0 auto;
+  /*  transition: scale 1s ease-out;
+    transform: scale(1.5);*/
   }
 }
