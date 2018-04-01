@@ -23,46 +23,34 @@ $(function(){
     $('#start').hide();
     $('.gamearea').show();
     $('.message').hide();
-    showBoard();
     getUserChoice();
     //console.log(animalGallery[index]);
-  };
-
-  var showBoard = function (){
-    var animalNames = animalArray.sort();
-    var i = 0;
-    var x = 4;
-    var html = '';
-
-    for(row = 0; row<x; row++){
-      html += '<div class= row>';
-      for(cell=0; cell<x; cell++){
-        html += '<div class= cell><span class= cell__text>' + animalNames[i] +'</span></div>';
-        i++;
-      }
-      html += '</div>';
-    }
-    $('.board').html(html);
     showAnimal();
   };
+
+
 
   //-------------------------------------GAME BEGINS
 
   var getUserChoice = function(){
 
     $('.cell').click(function(){
-      var userChoice = $(this).text();
+      var userChoice = $(this).children().text();
+
+
 
       if(animalGallery[index].includes(userChoice)){
-        $(this).addClass("cell__pictureFlip").children().css({"transform": "yellow"});
+        $(this).addClass('cell__flipped');
 
-        $('.cell').off('click').addClass('cell__non-hover');
+        $('.cell').off('click');
+        $('.front').addClass('front__non-hover');
         $('.message').show(500).delay(800).text('good job!').hide(500);
-        $(".cell__pictureFlip").css({"background":'url('+ animalGallery[index] +') no-repeat center center'});
 
-        setTimeout(function(){
-        $('.cell').removeClass('cell__non-hover cell__pictureFlip').attr('style', "");
-        getUserNextChoice();}, 1850);
+        setTimeout(()=>{
+          $(this).removeClass('cell__flipped');
+        $('.front').removeClass('front__non-hover').attr('style', "");
+
+        getUserNextChoice();}, 1800);
       } else{
         $('.message').show(500).delay(800).text('wrong, try again!').hide(500);
       }

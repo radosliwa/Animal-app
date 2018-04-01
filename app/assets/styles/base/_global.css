@@ -24,7 +24,7 @@ img{
   margin-left: auto;
   margin-right: auto;
   border:2px solid black;
-  height:100vh;
+  height:150vh;
   overflow: hidden;
 }
 .btn{
@@ -35,5 +35,5 @@ img{
   font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
-  
+
 }

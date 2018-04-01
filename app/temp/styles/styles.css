@@ -366,7 +366,7 @@ img{
   margin-left: auto;
   margin-right: auto;
   border:2px solid black;
-  height:100vh;
+  height:150vh;
   overflow: hidden;
 }
 
@@ -378,7 +378,7 @@ img{
   font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
-  
+
 }
 
 .site-header{
@@ -484,51 +484,70 @@ img{
 .board{
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px black;
-  width:50%;
+  max-width: 592px;
   margin: 1% auto 0 auto;
   border-radius: 10%;
   overflow: hidden;
   font-size: 25px;
-  line-height: 0.15;
+  line-height: 1.15;
 }
 
 .row{
-background: linear-gradient(to right, #575757 0%,#636363 12%,#6f6f6f 25%,#525252 39%,#393939 50%,#1f1f1f 60%,#383838 76%,#0f0f0f 78%,#0f0f0f 78%,#2a2a2a 91%,#212121 100%);
+-webkit-perspective:800px;
+        perspective:800px;
 color: white;
 }
 
 .cell{
+
   position: relative;
   border: white 1px solid;
-  width:25%;
-  height: 84px;
+  width:140px;
+  height: 140px;
   display: inline-block;
   text-align: center;
-  transition: all .5s ease-in-out;
+  /*transition: all .5s ease-in-out;*/
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  -webkit-transform-style:preserve-3d;
+          transform-style:preserve-3d;
+  }
+
+.cell__flipped{
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+  }
+
+.front{
+  z-index: 333;
+  width:inherit;
+  height: inherit;
+  position: absolute;
+  background: black; /*linear-gradient(to right, #575757 0%,#636363 12%,#6f6f6f 25%,#525252 39%,#393939 50%,#1f1f1f 60%,#383838 76%,#0f0f0f 78%,#0f0f0f 78%,#2a2a2a 91%,#212121 100%)*/
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+
+
 }
 
-.cell:hover{
+.front:hover{
     cursor: pointer;
-    background-color: rgba(229, 229, 229, 0.5);
+    background-color: rgba(229, 229, 229);
   }
 
-.cell__non-hover:hover{
+.front__non-hover:hover{
     cursor:default;
-    background-color: inherit;
+    background-color: black;
   }
 
-.cell__text{
-    display: block;
-    position: absolute;
-    top:50%;
-    left:50%;
-    -webkit-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-  }
-
-.cell__name{
-    width:inherit;
-  }
+.back{
+  position: absolute;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+}
 
 .message{
   margin: 0 auto;
@@ -562,4 +581,5 @@ color: white;
   color: #FFF;
   padding: .5rem 18px .5rem 18px;
   text-align: center;
+  
 }
