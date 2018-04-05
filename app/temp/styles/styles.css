@@ -366,7 +366,7 @@ img{
   margin-left: auto;
   margin-right: auto;
   border:2px solid black;
-  height:150vh;
+  height:130vh;
   overflow: hidden;
 }
 
@@ -424,11 +424,10 @@ img{
 
 #start{
   font-weight: bold;
-  position: absolute;
-  top:50%;
-  left:50%;
-  -webkit-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
+  position: relative;
+  margin: 0 auto;
+  border-radius: 10%;
+  top: 30%;
 
 }
 
@@ -475,26 +474,27 @@ img{
     width: 160px;
     height: 160px;
     border: 6px solid rgba(255, 255, 255, .3);
-    box-shadow: 0px 5px 18px 1px black;
+    box-shadow: 0px 5px 18px 1px #000;
 
   }
 
 /*----------------------------GAME BOARD*/
 
 .board{
+  position: relative;
   border: 6px solid rgba(255, 255, 255, .3);
-  box-shadow: 0px 5px 10px 3px black;
-  max-width: 592px;
+  box-shadow: 0px 5px 10px 3px #000;
+  max-width: 432px;
   margin: 1% auto 0 auto;
   border-radius: 10%;
   overflow: hidden;
   font-size: 25px;
   line-height: 1.15;
+  top: 30px;
 }
 
 .row{
--webkit-perspective:800px;
-        perspective:800px;
+
 color: white;
 }
 
@@ -502,14 +502,14 @@ color: white;
 
   position: relative;
   border: white 1px solid;
-  width:140px;
-  height: 140px;
+  width:100px;
+  height: 70px;
   display: inline-block;
   text-align: center;
   /*transition: all .5s ease-in-out;*/
-  transition: -webkit-transform 1s;
-  transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s;
+  transition: -webkit-transform .7s ease-in;
+  transition: transform .7s ease-in;
+  transition: transform .7s ease-in, -webkit-transform .7s ease-in;
   -webkit-transform-style:preserve-3d;
           transform-style:preserve-3d;
   }
@@ -524,7 +524,7 @@ color: white;
   width:inherit;
   height: inherit;
   position: absolute;
-  background: black; /*linear-gradient(to right, #575757 0%,#636363 12%,#6f6f6f 25%,#525252 39%,#393939 50%,#1f1f1f 60%,#383838 76%,#0f0f0f 78%,#0f0f0f 78%,#2a2a2a 91%,#212121 100%)*/
+  background: #000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 
@@ -538,11 +538,14 @@ color: white;
 
 .front__non-hover:hover{
     cursor:default;
-    background-color: black;
+    background-color: #000;
   }
 
 .back{
+  width:100px;
+  height: 70px;
   position: absolute;
+  overflow: hidden;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
   -webkit-backface-visibility:hidden;
@@ -550,8 +553,10 @@ color: white;
 }
 
 .message{
-  margin: 0 auto;
-  display: block;
+  font-size: 25px;
+  display: none;
+  text-align: center;
+
 }
 
 .finalMessage{
@@ -559,11 +564,11 @@ color: white;
   position:absolute;
   color: red;
   text-align: center;
-  border: 2px solid black;
+  border: 2px solid #000;
   border-radius: 50%;
   margin: 0 auto;
   width: 148px;
-  flex-wrap: wrap;
+
   height: 148px;
   top:50%;
   left:50%;

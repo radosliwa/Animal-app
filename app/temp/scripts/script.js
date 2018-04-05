@@ -22,7 +22,7 @@ $(function(){
   var startGame = function(){
     $('#start').hide();
     $('.gamearea').show();
-    $('.message').hide();
+  //  $('.message').hide();
     getUserChoice();
     //console.log(animalGallery[index]);
     showAnimal();
@@ -44,7 +44,10 @@ $(function(){
 
         $('.cell').off('click');
         $('.front').addClass('front__non-hover');
-        $('.message').show(500).delay(800).text('good job!').hide(500);
+        $('.message').addClass('animated bounceInLeft').show().delay(900).text('good job!').delay(900)
+        .queue(function(){
+          $(this).removeClass('animated bounceInLeft').addClass('animated bounceOutUp');
+        });
 
         setTimeout(()=>{
           $(this).removeClass('cell__flipped');
@@ -52,13 +55,13 @@ $(function(){
 
         getUserNextChoice();}, 1800);
       } else{
-        $('.message').show(500).delay(800).text('wrong, try again!').hide(500);
+        $('.message').addClass('animated bounceInLeft').css('display','block').delay(900).text('wrong, try again!').hide(500);
       }
     });
   }
 
   var getUserNextChoice = function(){
-
+    
     animalGallery.splice(index,1) // to avoid repeats
 
     showAnimal();
