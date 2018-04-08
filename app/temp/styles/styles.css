@@ -507,9 +507,9 @@ color: white;
   display: inline-block;
   text-align: center;
   /*transition: all .5s ease-in-out;*/
-  transition: -webkit-transform .7s ease-in;
-  transition: transform .7s ease-in;
-  transition: transform .7s ease-in, -webkit-transform .7s ease-in;
+  transition: -webkit-transform .7s linear;
+  transition: transform .7s linear;
+  transition: transform .7s linear, -webkit-transform .7s linear;
   -webkit-transform-style:preserve-3d;
           transform-style:preserve-3d;
   }
@@ -556,6 +556,7 @@ color: white;
   font-size: 25px;
   display: none;
   text-align: center;
+  display: none;
 
 }
 

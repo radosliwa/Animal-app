@@ -81,7 +81,7 @@ color: white;
   display: inline-block;
   text-align: center;
   /*transition: all .5s ease-in-out;*/
-  transition: transform .7s ease-in;
+  transition: transform .7s linear;
   transform-style:preserve-3d;
   &__flipped{
     transform: rotateY(-180deg);
@@ -125,6 +125,7 @@ color: white;
   font-size: 25px;
   display: none;
   text-align: center;
+  display: none;
 
 }
 .finalMessage{
