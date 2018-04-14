@@ -371,15 +371,26 @@ img{
 }
 
 .btn{
-  border: black 1px solid;
+
   width: 20%;
   text-align: center;
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
-
+  border: 2px solid black;
+  box-shadow: 0px 5px 14px 1px #000;
 }
+
+.btn:hover{
+    border: 2px solid rgba(255, 255, 255, .3);
+    
+    }
+
+.btn:active{
+    box-shadow: 0px 0px 3px  #000;
+    color: #f7f1f1;
+  }
 
 .site-header{
   background-color:black;
@@ -423,19 +434,31 @@ img{
 /*---------------GAME*/
 
 #start{
+
   font-weight: bold;
   position: relative;
   margin: 0 auto;
   border-radius: 10%;
   top: 30%;
-
+  display: none;
 }
+
+/* will be changed by fadeTo()*/
+
+#start__visible{
+    opacity: 1;
+  }
 
 /*----------------------------GAME BEGINS*/
 
 .gamearea{
+  display: none; /* will be changed by fadeTo()*/
   margin-top: 3%;
 }
+
+.gamearea__visible{
+    opacity: 1;
+  }
 
 .gamearea__columns{
     display: flex;
@@ -527,6 +550,7 @@ color: white;
   background: #000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  line-height: 2.15;
 
 
 }
@@ -571,7 +595,7 @@ color: white;
   width: 148px;
 
   height: 148px;
-  top:50%;
+  top:30%;
   left:50%;
   -webkit-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);

@@ -2,17 +2,27 @@
 /*---------------GAME*/
 
 #start{
+
   font-weight: bold;
   position: relative;
   margin: 0 auto;
   border-radius: 10%;
   top: 30%;
+  display: none; /* will be changed by fadeTo()*/
 
+  &__visible{
+    opacity: 1;
+  }
 }
 
 /*----------------------------GAME BEGINS*/
 .gamearea{
+  display: none; /* will be changed by fadeTo()*/
   margin-top: 3%;
+
+  &__visible{
+    opacity: 1;
+  }
   &__columns{
     display: flex;
     justify-content: center;
@@ -97,6 +107,7 @@ color: white;
   position: absolute;
   background: #000;
   backface-visibility: hidden;
+  line-height: 2.15;
 
 
 
@@ -139,7 +150,7 @@ color: white;
   width: 148px;
 
   height: 148px;
-  top:50%;
+  top:30%;
   left:50%;
   transform: translate(-50%,-50%);
     &__text{

@@ -1,28 +1,27 @@
+
+
+
+
+//-----------------------------------------GLOBAL ARRAYS
+
+
+var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
+'assets/images/animal-cat.jpg'];
+var index;
+var animalArray = ['dog','racoon', 'cat'];
+
 $(function(){
 
-  //-----------------------------------------GLOBAL ARRAYS
-
-
-  var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-  'assets/images/animal-cat.jpg'];
-  var index;
-  var animalArray = ['dog','racoon', 'cat'];
-
-
-  //-----------------------------------
-
-
-
   var gameOpens = (function(){
-    $('.gamearea').hide();
-    $('#start').click(function(){startGame();});
+    $('#start').fadeTo('slow', 1)
+    .click(function(){startGame();});
   })();
 
 
   var startGame = function(){
     $('#start').hide();
-    $('.gamearea').show();
-    //  $('.message').hide();
+    $('.gamearea').fadeTo('fast', 1);
+
     getUserChoice();
     //console.log(animalGallery[index]);
     showAnimal();
@@ -45,9 +44,12 @@ $(function(){
         $('.cell').off('click');
         $('.front').addClass('front__non-hover');
         $('.message').addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
-        .on('animationend', function(){
-          $('.message').addClass('animated bounceOutUp');
-        });
+        .one('animationend', function(){
+
+          $(this).addClass('animated bounceOutUp');
+          $('.animal').fadeOut(800);
+
+        }); //with on() fadeOut would fire even after else
 
         setTimeout(()=>{
           $(this).removeClass('cell__flipped');
@@ -57,20 +59,19 @@ $(function(){
         }, 2000);
 
         } else{
+``
           $('.front').addClass('front__non-hover');
           $('.message').addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600)
-            .on('animationend',function(){
+            .one('animationend',function(){
               $(this).removeClass('animated bounceInLeft');
               $('.front').removeClass('front__non-hover');
+
             });
         }
       });
     }
 
     var getUserNextChoice = function(){
-
-
-        //$('.message').removeClass('animated bounceInLeft bounceOutUp').hide();
 
       animalGallery.splice(index,1) // to avoid repeats
 
@@ -80,8 +81,8 @@ $(function(){
       if(animalGallery.length<1){     //-----------------GAME ENDS
         $('.gamearea').fadeOut(1000);
         setTimeout(function(){
-          $('.finalMessage').css({display:"flex"}).show().delay(2000).queue(function(){
-            location.reload(true);//from server, not cache
+          $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){
+            location.reload();//from server, not cache
           });
         }, 1000);
       }
@@ -89,8 +90,9 @@ $(function(){
     }
 
     var showAnimal = function(){
+
       index = Math.floor(Math.random()*animalGallery.length);
-      $('.animal').attr('src',animalGallery[index]);
+      $('.animal').attr('src',animalGallery[index]).fadeIn();
 
       console.log(animalGallery[index]);
     };
