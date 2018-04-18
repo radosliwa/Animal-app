@@ -5,12 +5,16 @@
 //-----------------------------------------GLOBAL ARRAYS
 
 
-var animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-'assets/images/animal-cat.jpg'];
-var index;
-var animalArray = ['dog','racoon', 'cat'];
 
 $(function(){
+  const animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
+  'assets/images/animal-cat.jpg'];
+  let index;
+  const animalArray = ['dog','racoon', 'cat'];
+
+
+
+//-------------------------------------OPENING
 
   var gameOpens = (function(){
     $('#start').fadeTo('slow', 1)
@@ -33,7 +37,7 @@ $(function(){
 
   var getUserChoice = function(){
     $('.cell').click(function(){
-      //$('.message').removeClass('animated bounceInLeft');
+      
       var userChoice = $(this).children().text();
 
 
