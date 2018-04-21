@@ -1,105 +1,102 @@
 
 
+let index;
+class Animalia{
 
+  constructor(animalGallery){
+    this.animalGallery = animalGallery;
+    this.animalArray = ['dog','racoon', 'cat'];
+    this.startButton = $('#start');
+    this.gameArea = $('.gamearea');
+    this.cellToClick = $('.cell');
+    this.cellFront = $('.front');
+    this.message = $('.message');
+    this.animalShowing = $('.animal');
+    this.finalMessage = $('.finalMessage');
+    this.startButton.fadeTo('slow', 1);
 
-//-----------------------------------------GLOBAL ARRAYS
-
-
-
-$(function(){
-  const animalGallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-  'assets/images/animal-cat.jpg'];
-  let index;
-  const animalArray = ['dog','racoon', 'cat'];
-
-
-
-//-------------------------------------OPENING
-
-  var gameOpens = (function(){
-    $('#start').fadeTo('slow', 1)
-    .click(function(){startGame();});
-  })();
-
-
-  var startGame = function(){
-    $('#start').hide();
-    $('.gamearea').fadeTo('fast', 1);
-
-    getUserChoice();
-    //console.log(animalGallery[index]);
-    showAnimal();
-  };
-
-
+    this.startButton.click(()=> {this.startGame();});
+  }
 
   //-------------------------------------GAME BEGINS
+  startGame (){
+    this.startButton.hide();
+    this.gameArea.fadeTo('fast', 1);
+    this.showAnimal();
 
-  var getUserChoice = function(){
-    $('.cell').click(function(){
-      
-      var userChoice = $(this).children().text();
+    this.cellToClick.click(this.getUserChoice);
+    //this.getUserChoice();
+  }
 
+  //------------------------------------- user engages
+  getUserChoice (){
 
+    let userChoice = $(this).children().text();
+    console.log(userChoice);
+    if(this.animalGallery[index].includes(userChoice)){
+      $(this).addClass('cell__flipped');
 
-      if(animalGallery[index].includes(userChoice)){
-        $(this).addClass('cell__flipped');
+      this.cellToClick.off('click');
+      $(this.cellFront).addClass('front__non-hover');
+      $(this.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
+      .one('animationend', function(){
 
-        $('.cell').off('click');
-        $('.front').addClass('front__non-hover');
-        $('.message').addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
-        .one('animationend', function(){
+        $(this).addClass('animated bounceOutUp');
+        $('.animal').fadeOut(800);
 
-          $(this).addClass('animated bounceOutUp');
-          $('.animal').fadeOut(800);
+      }); //with on() fadeOut would fire even after else
 
-        }); //with on() fadeOut would fire even after else
+      setTimeout(()=>{
+        $(this).removeClass('cell__flipped');
+        $(this.cellFront).removeClass('front__non-hover').attr('style', "");
+        $(this.message).removeClass('animated bounceInLeft bounceOutUp').text("");
+        this.getUserNextChoice();
+      }, 2000);
 
-        setTimeout(()=>{
-          $(this).removeClass('cell__flipped');
-          $('.front').removeClass('front__non-hover').attr('style', "");
-          $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
-          getUserNextChoice();
-        }, 2000);
+    } else{
 
-        } else{
-``
-          $('.front').addClass('front__non-hover');
-          $('.message').addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600)
-            .one('animationend',function(){
-              $(this).removeClass('animated bounceInLeft');
-              $('.front').removeClass('front__non-hover');
+      $(this.cellFront).addClass('front__non-hover');
+      $(this.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600)
+      .one('animationend',function(){
+        $(this).removeClass('animated bounceInLeft');
+        $(this.cellFront).removeClass('front__non-hover');
 
-            });
-        }
       });
     }
-
-    var getUserNextChoice = function(){
-
-      animalGallery.splice(index,1) // to avoid repeats
-
-      showAnimal();
+  }
 
 
-      if(animalGallery.length<1){     //-----------------GAME ENDS
-        $('.gamearea').fadeOut(1000);
-        setTimeout(function(){
-          $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){
-            location.reload();//from server, not cache
-          });
-        }, 1000);
-      }
-      getUserChoice();
+  getUserNextChoice (){
+
+    this.animalGallery.splice(index,1) // to avoid repeats
+
+    this.showAnimal();
+    //--------------------------------------------------------------GAME ENDS
+
+    if(this.animalGallery.length<1){
+      $('.gamearea').fadeOut(1000);
+      setTimeout(function(){
+        $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){
+          location.reload();//from server, not cache
+        });
+      }, 1000);
     }
+    this.getUserChoice();
+  }
 
-    var showAnimal = function(){
+  showAnimal(){
+    this.getIndex();
 
-      index = Math.floor(Math.random()*animalGallery.length);
-      $('.animal').attr('src',animalGallery[index]).fadeIn();
+    this.animalShowing.attr('src',this.animalGallery[index]).fadeIn();
 
-      console.log(animalGallery[index]);
-    };
+    //console.log(this.animalGallery);
+  }
 
+  getIndex(){
 
-  });
+    index = Math.floor(Math.random()*this.animalGallery.length);
+  }
+}
+
+var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
+'assets/images/animal-cat.jpg']);
