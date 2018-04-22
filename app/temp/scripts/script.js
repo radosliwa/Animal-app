@@ -14,8 +14,8 @@ class Animalia{
     this.animalShowing = $('.animal');
     this.finalMessage = $('.finalMessage');
     this.startButton.fadeTo('slow', 1);
+    this.events();
 
-    this.startButton.click(()=> {this.startGame();});
   }
 
   //-------------------------------------GAME BEGINS
@@ -24,19 +24,24 @@ class Animalia{
     this.gameArea.fadeTo('fast', 1);
     this.showAnimal();
 
-    this.cellToClick.click(this.getUserChoice);
+
     //this.getUserChoice();
   }
+  events(){
+    var self = this;
+    this.startButton.click(()=> {this.startGame();});
+    this.cellToClick.click(this.getUserChoice.bind(this));
 
+  }
   //------------------------------------- user engages
   getUserChoice (){
 
-    let userChoice = $(this).children().text();
+    let userChoice = $(this.cellToClick).children().text();
     console.log(userChoice);
     if(this.animalGallery[index].includes(userChoice)){
       $(this).addClass('cell__flipped');
-
       this.cellToClick.off('click');
+
       $(this.cellFront).addClass('front__non-hover');
       $(this.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
       .one('animationend', function(){
