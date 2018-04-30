@@ -26,30 +26,32 @@ class Animalia{
   startGame (){
     this.startButton.hide();
     this.gameArea.fadeTo('fast', 1);
-    this.showAnimal();
     this.getUserChoice();
   }
 
   //------------------------------------- user engages
   getUserChoice (){
 
+    this.showAnimal();
     let userChoice;
     let that = this;
+    console.log(this.animalGallery);
     this.cellToClick.on('click', function(e){
-      userChoice = e.target.innerText;
+      userChoice = $(this).children().text();
+      console.log(e.target);
+      e.stopImmediatePropagation();
 
-      //let userChoice = $(this).children().text();
-      console.log(that.animalGallery);
+      $(this).off('click');
 
-      if(that.animalGallery[index].includes(userChoice)){
-        $(this).addClass('cell__flipped').off('click');
+      if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
+        $(this).addClass('cell__flipped');
 
         $(that.cellFront).addClass('front__non-hover');
         $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
         .one('animationend', function(){
 
           $(this).addClass('animated bounceOutUp');
-          $('.animal').fadeOut(800);
+          $(that.animalShowing).fadeOut(800);
 
         }); //with on() fadeOut would fire even after else
 
@@ -76,13 +78,14 @@ class Animalia{
 
 
   getUserNextChoice (){
+    //console.log(this.animalGallery);
 
-    this.animalGallery.splice(index,1) // to avoid repeats
-    this.showAnimal();
+    this.animalGallery.splice(index,1); // to avoid repeats
+  //  this.showAnimal();
     //--------------------------------------------------------------GAME ENDS
-
-    if(this.animalGallery.length<1){
-      $('.gamearea').fadeOut(1000);
+    let galleryLen = this.animalGallery.length;
+    if(galleryLen<1){
+      $(this.gameArea).fadeOut(1000);
       setTimeout(function(){
         $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){
           location.reload();//from server, not cache
