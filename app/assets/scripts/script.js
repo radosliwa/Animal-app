@@ -1,7 +1,6 @@
-
-
-
+var $ = require('jquery');
 let index;
+
 class Animalia{
 
   constructor(animalGallery){
@@ -33,23 +32,27 @@ class Animalia{
   getUserChoice (){
 
     this.showAnimal();
+
     let userChoice;
     let that = this;
     console.log(this.animalGallery);
-    this.cellToClick.on('click', function(e){
+    this.cellToClick.one('click', function(e){
+
+      /* one turns off click for clicked
+      element, off('click') below does that for the rest of the cells */
+
       userChoice = $(this).children().text();
       console.log(e.target);
       e.stopImmediatePropagation();
 
-      $(this).off('click');
-
       if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
+        $(that.cellToClick).off('click');
         $(this).addClass('cell__flipped');
 
         $(that.cellFront).addClass('front__non-hover');
         $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
         .one('animationend', function(){
-
+          $(that.cellToClick).off('click');
           $(this).addClass('animated bounceOutUp');
           $(that.animalShowing).fadeOut(800);
 
@@ -81,13 +84,13 @@ class Animalia{
     //console.log(this.animalGallery);
 
     this.animalGallery.splice(index,1); // to avoid repeats
-  //  this.showAnimal();
+    //  this.showAnimal();
     //--------------------------------------------------------------GAME ENDS
     let galleryLen = this.animalGallery.length;
     if(galleryLen<1){
       $(this.gameArea).fadeOut(1000);
       setTimeout(function(){
-        $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){
+        $(this.finalMessage).css({display:"flex"}).show().fadeOut(1800).queue(function(){
           location.reload();//from server, not cache
         });
       }, 1000);

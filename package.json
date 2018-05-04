@@ -4,7 +4,9 @@
   "description": "picture picking game",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack" : "webpack",
+    "watch" : "gulp watch"
   },
   "keywords": [
     "npm"
@@ -14,7 +16,8 @@
   "dependencies": {
     "animate.css": "^3.6.1",
     "jquery": "^3.3.1",
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "webpack": "^3.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",

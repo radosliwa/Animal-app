@@ -398,10 +398,6 @@ img{
   height: 120px;
 }
 
-.site-header > *{
-
-  }
-
 .site-header::after{
     content:"";
     display: table;
@@ -422,13 +418,8 @@ img{
 .site-header__logo{
     display: block;
     height: 156px;
-    left:50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    position: absolute;
     margin: -10px auto 0 auto;
-  /*  transition: scale 1s ease-out;
-    transform: scale(1.5);*/
+
   }
 
 /*---------------GAME*/

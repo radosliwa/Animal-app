@@ -2,9 +2,7 @@
   background-color:black;
   color: #FFF;
   height: 120px;
-  & > *{
 
-  }
   @mixin clearfix;
 
   &__wrapper{
@@ -20,11 +18,7 @@
   &__logo{
     display: block;
     height: 156px;
-    left:50%;
-    transform: translateX(-50%);
-    position: absolute;
     margin: -10px auto 0 auto;
-  /*  transition: scale 1s ease-out;
-    transform: scale(1.5);*/
+
   }
 }
