@@ -67,12 +67,19 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var $ = __webpack_require__(1);
-let index;
+var index = void 0;
 
-class Animalia{
-
-  constructor(animalGallery){
+var Animalia = function () {
+  function Animalia(animalGallery) {
+    _classCallCheck(this, Animalia);
 
     this.animalGallery = animalGallery;
     this.startButton = $('#start');
@@ -87,100 +94,112 @@ class Animalia{
   }
 
   //-------------------------------------GAME BEGINS
-  events(){
-    this.startButton.click(()=> {this.startGame();});
-  }
-
-  startGame (){
-    this.startButton.hide();
-    this.gameArea.fadeTo('fast', 1);
-    this.getUserChoice();
-  }
-
-  //------------------------------------- user engages
-  getUserChoice (){
-
-    this.showAnimal();
-
-    let userChoice;
-    let that = this;
-    console.log(this.animalGallery);
-    this.cellToClick.one('click', function(e){
-
-      /* one turns off click for clicked
-      element, off('click') below does that for the rest of the cells */
-
-      userChoice = $(this).children().text();
-      console.log(e.target);
-      e.stopImmediatePropagation();
-
-      if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
-        $(that.cellToClick).off('click');
-        $(this).addClass('cell__flipped');
-
-        $(that.cellFront).addClass('front__non-hover');
-        $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
-        .one('animationend', function(){
-          $(that.cellToClick).off('click');
-          $(this).addClass('animated bounceOutUp');
-          $(that.animalShowing).fadeOut(800);
-
-        }); //with on() fadeOut would fire even after else
-
-        setTimeout(()=>{
-          $(this).removeClass('cell__flipped');
-          $(that.cellFront).removeClass('front__non-hover').attr('style', "");
-          $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
-          that.getUserNextChoice();
-        }, 2000);
-
-      } else {
-
-        $(this).addClass('front__non-hover');
-        $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600)
-        .one('animationend',function(){
-          $(this).removeClass('animated bounceInLeft');
-          $(that.cellFront).removeClass('front__non-hover');
-
-        });
-      }
-    });
-
-  }
 
 
-  getUserNextChoice (){
-    //console.log(this.animalGallery);
+  _createClass(Animalia, [{
+    key: 'events',
+    value: function events() {
+      var _this = this;
 
-    this.animalGallery.splice(index,1); // to avoid repeats
-    //  this.showAnimal();
-    //--------------------------------------------------------------GAME ENDS
-    let galleryLen = this.animalGallery.length;
-    if(galleryLen<1){
-      $(this.gameArea).fadeOut(1000);
-      setTimeout(function(){
-        $(this.finalMessage).css({display:"flex"}).show().fadeOut(1800).queue(function(){
-          location.reload();//from server, not cache
-        });
-      }, 1000);
+      this.startButton.click(function () {
+        _this.startGame();
+      });
     }
-    this.getUserChoice();
-  }
+  }, {
+    key: 'startGame',
+    value: function startGame() {
+      this.startButton.hide();
+      this.gameArea.fadeTo('fast', 1);
+      this.getUserChoice();
+    }
 
-  showAnimal(){
+    //------------------------------------- user engages
 
-    this.getIndex();
-    this.animalShowing.attr('src',this.animalGallery[index]).fadeIn();
-  }
+  }, {
+    key: 'getUserChoice',
+    value: function getUserChoice() {
 
-  getIndex(){
-    index = Math.floor(Math.random()*this.animalGallery.length);
-  }
-}
+      var userChoice = void 0;
+      var that = this;
+      this.showAnimal();
+      // console.log(this.animalGallery);
 
-var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-'assets/images/animal-cat.jpg']);
+      this.cellToClick.one('click', function (e) {
+        var _this2 = this;
 
+        /* one turns off click for clicked
+        element, off('click') below does that for the rest of the cells */
+
+        userChoice = $(this).children().text();
+        console.log(e.target);
+        e.stopImmediatePropagation();
+
+        if (that.animalGallery[index].includes(userChoice) && userChoice !== "") {
+          $(that.cellToClick).off('click');
+          $(this).addClass('cell__flipped');
+          $(that.cellFront).addClass('front__non-hover');
+          $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
+
+          .one('animationend', function () {
+            $(that.cellToClick).off('click');
+            $(this).addClass('animated bounceOutUp');
+            $(that.animalShowing).fadeOut(800);
+          }); //with on() fadeOut would fire even after else
+
+          setTimeout(function () {
+            $(_this2).removeClass('cell__flipped');
+            $(that.cellFront).removeClass('front__non-hover').attr('style', "");
+            $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
+            that.getUserNextChoice();
+          }, 2000);
+        } else {
+
+          $(this).addClass('front__non-hover');
+          $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600).one('animationend', function () {
+            $(this).removeClass('animated bounceInLeft');
+            $(that.cellFront).removeClass('front__non-hover');
+          });
+        }
+      });
+    }
+  }, {
+    key: 'getUserNextChoice',
+    value: function getUserNextChoice() {
+      //console.log(this.animalGallery);
+
+      this.animalGallery.splice(index, 1); // to avoid repeats
+      //  this.showAnimal();
+      //--------------------------------------------------------------GAME ENDS
+      var galleryLen = this.animalGallery.length;
+      var that = this;
+      if (galleryLen < 1) {
+        $(this.gameArea).fadeOut(1000);
+        setTimeout(function () {
+          $(that.finalMessage).css({ display: "flex" }).show().fadeOut(1800).queue(function () {
+            location.reload(); //from server, not cache
+          });
+        }, 1000);
+      }
+      this.getUserChoice();
+    }
+  }, {
+    key: 'showAnimal',
+    value: function showAnimal() {
+
+      this.getIndex();
+      this.animalShowing.attr('src', this.animalGallery[index]).fadeIn();
+    }
+  }, {
+    key: 'getIndex',
+    value: function getIndex() {
+      index = Math.floor(Math.random() * this.animalGallery.length);
+    }
+  }]);
+
+  return Animalia;
+}();
+
+var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg']);
 
 /***/ }),
 /* 1 */

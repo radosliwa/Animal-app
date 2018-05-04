@@ -5,5 +5,17 @@ module.exports = {
   output: {
     filename: 'script.js',
     path: path.resolve(__dirname, './app/temp/scripts')
+  },
+  module: {
+    loaders:[
+      {
+        loader: 'babel-loader',
+        query: {
+          presets:['es2015']
+        },
+        test:/\.js$/,
+        exclude:/node_modules/
+      }
+    ]
   }
 };

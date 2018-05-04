@@ -31,11 +31,11 @@ class Animalia{
   //------------------------------------- user engages
   getUserChoice (){
 
-    this.showAnimal();
-
     let userChoice;
     let that = this;
-    console.log(this.animalGallery);
+    this.showAnimal();
+    // console.log(this.animalGallery);
+
     this.cellToClick.one('click', function(e){
 
       /* one turns off click for clicked
@@ -48,9 +48,9 @@ class Animalia{
       if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
         $(that.cellToClick).off('click');
         $(this).addClass('cell__flipped');
-
         $(that.cellFront).addClass('front__non-hover');
         $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
+
         .one('animationend', function(){
           $(that.cellToClick).off('click');
           $(this).addClass('animated bounceOutUp');
@@ -87,10 +87,11 @@ class Animalia{
     //  this.showAnimal();
     //--------------------------------------------------------------GAME ENDS
     let galleryLen = this.animalGallery.length;
+    let that = this;
     if(galleryLen<1){
       $(this.gameArea).fadeOut(1000);
       setTimeout(function(){
-        $(this.finalMessage).css({display:"flex"}).show().fadeOut(1800).queue(function(){
+        $(that.finalMessage).css({display:"flex"}).show().fadeOut(1800).queue(function(){
           location.reload();//from server, not cache
         });
       }, 1000);
