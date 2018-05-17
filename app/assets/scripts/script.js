@@ -1,4 +1,5 @@
 var $ = require('jquery');
+
 let index;
 
 class Animalia{
@@ -43,7 +44,7 @@ class Animalia{
 
       userChoice = $(this).children().text();
       console.log(e.target);
-      
+
       e.stopImmediatePropagation();
 
       if(that.animalGallery[index].includes(userChoice) && userChoice !==""){

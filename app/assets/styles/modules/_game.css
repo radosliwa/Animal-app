@@ -124,8 +124,8 @@ color: white;
 }
 
 .back{
-  width:100px;
-  height: 70px;
+  width:inherit;
+  height: inherit;
   position: absolute;
   overflow: hidden;
   transform: rotateY(-180deg);
