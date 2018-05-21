@@ -16,6 +16,7 @@ class Animalia{
     this.animalShowing = $('.animal');
     this.finalMessage = $('.finalMessage');
     this.startButton.fadeTo('slow', 1);
+    this.gameArrow = $('.gamearea__pointer');
     this.events();
   }
 
@@ -64,6 +65,7 @@ class Animalia{
         $(this).addClass('cell__flipped');
         $(that.cellToClick).off('click');
         $(that.cellFront).addClass('front__non-hover');
+        $(that.gameArrow).removeClass('animated bounceInLeft').addClass('rotate');
         $(that.message).addClass('animated bounceInLeft').show().text('good job!').delay(500) //needed first delay to keep message still for a sec
 
         .one('animationend', function(){
@@ -73,7 +75,8 @@ class Animalia{
 
         }); //with on() fadeOut would fire even after else
         setTimeout(()=>{
-          //$(this).removeClass('cell__flipped');
+        
+          $(that.gameArrow).addClass('animated bounceInLeft').removeClass('rotate');
           $(that.cellFront).removeClass('front__non-hover').attr('style', "");
           $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
           that.getUserNextChoice();

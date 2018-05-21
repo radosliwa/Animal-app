@@ -463,23 +463,33 @@ img{
     }
 
 .gamearea__pointer{
-    background-color: #4D81BF;
-    /*width: 150px; */
-    height: 40px;
-    line-height: 40px;
+    background-color: #000;
+    color: #FFF;
+    font-size: 20px;
+    /* height: 40px; */
     position: relative;
+
   }
 
+/* line-height: 3.35px; */
+
+.gamearea__pointer--p{
+      display: inline-block;
+      padding: 0 20px;
+
+    }
+
 .gamearea__pointer:after{
-      color: #4D81BF;
+      color: #000;
       border-left: 20px solid;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
+      border-top: 30px solid transparent;
+      border-bottom: 30px solid transparent;
       display: inline-block;
       content: '';
       position: absolute;
       right: -20px;
       top:0;
+
     }
 
 .gamearea__picture{
@@ -591,6 +601,27 @@ img{
       margin:0 auto;
       align-self: center;
   }
+
+.rotate{
+  -webkit-animation: rotate 220ms ease-in 3;
+          animation: rotate 220ms ease-in 3;
+}
+
+@-webkit-keyframes rotate{
+  0% {-webkit-transform: rotate(0deg);transform: rotate(0deg)}
+  25% {-webkit-transform: rotate(90deg);transform: rotate(90deg)}
+  50% {-webkit-transform: rotate(180deg);transform: rotate(180deg)}
+  75%{-webkit-transform: rotate(270deg);transform: rotate(270deg)}
+  100% {-webkit-transform: rotate(360deg);transform: rotate(360deg)}
+}
+
+@keyframes rotate{
+  0% {-webkit-transform: rotate(0deg);transform: rotate(0deg)}
+  25% {-webkit-transform: rotate(90deg);transform: rotate(90deg)}
+  50% {-webkit-transform: rotate(180deg);transform: rotate(180deg)}
+  75%{-webkit-transform: rotate(270deg);transform: rotate(270deg)}
+  100% {-webkit-transform: rotate(360deg);transform: rotate(360deg)}
+}
 
 .site-footer{
   background-color:black;
