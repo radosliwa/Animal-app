@@ -82,11 +82,12 @@ var Animalia = function () {
   function Animalia(animalGallery) {
     _classCallCheck(this, Animalia);
 
+    this.animalNames = ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin'];
     this.animalGallery = animalGallery;
     this.startButton = $('#start');
     this.gameArea = $('.gamearea');
-    this.cellToClick = $('.cell');
-    this.cellFront = $('.front');
+    //this.cellToClick = $('.cell');
+    //this.cellFront = $('.front');
     this.message = $('.message');
     this.animalShowing = $('.animal');
     this.finalMessage = $('.finalMessage');
@@ -103,12 +104,26 @@ var Animalia = function () {
       var _this = this;
 
       this.startButton.click(function () {
+        _this.createRandomBoard();
         _this.startGame();
       });
     }
   }, {
+    key: 'createRandomBoard',
+    value: function createRandomBoard() {
+      var arr = this.animalNames;
+      var arrSort = arr.sort(function () {
+        return Math.random() - 0.5;
+      });
+      for (var i = 0; i < arr.length; i++) {
+        $('.board').append('<div class="cell">\n      <div class="front">' + arrSort[i] + '</div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>');
+      }
+    }
+  }, {
     key: 'startGame',
     value: function startGame() {
+      this.cellToClick = $('.cell');
+      this.cellFront = $('.front');
       this.startButton.hide();
       this.gameArea.fadeTo('fast', 1);
       this.getUserChoice();
@@ -123,41 +138,36 @@ var Animalia = function () {
       var userChoice = void 0;
       var that = this;
       this.showAnimal();
-      // console.log(this.animalGallery);
-
       this.cellToClick.one('click', function (e) {
-        var _this2 = this;
 
         /* one turns off click for clicked
         element, off('click') below does that for the rest of the cells */
 
         userChoice = $(this).children().text();
-        console.log(e.target);
-
         e.stopImmediatePropagation();
 
         if (that.animalGallery[index].includes(userChoice) && userChoice !== "") {
-          $(that.cellToClick).off('click');
           $(this).addClass('cell__flipped');
+          $(that.cellToClick).off('click');
           $(that.cellFront).addClass('front__non-hover');
-          $(that.message).addClass('animated bounceInLeft').show().delay(600).text('good job!').delay(500) //needed first delay to keep message still for a sec
+          $(that.message).addClass('animated bounceInLeft').show().text('good job!').delay(500) //needed first delay to keep message still for a sec
 
           .one('animationend', function () {
             $(that.cellToClick).off('click');
             $(this).addClass('animated bounceOutUp');
-            $(that.animalShowing).fadeOut(800);
+            $(that.animalShowing).fadeOut(700);
           }); //with on() fadeOut would fire even after else
-
           setTimeout(function () {
-            $(_this2).removeClass('cell__flipped');
+            //$(this).removeClass('cell__flipped');
             $(that.cellFront).removeClass('front__non-hover').attr('style', "");
             $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
             that.getUserNextChoice();
-          }, 2000);
+          }, 1700);
         } else {
 
           $(this).addClass('front__non-hover');
-          $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').hide(600).one('animationend', function () {
+          $(this.cellToClick).off('click');
+          $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').one('animationend', function () {
             $(this).removeClass('animated bounceInLeft');
             $(that.cellFront).removeClass('front__non-hover');
           });
@@ -167,10 +177,8 @@ var Animalia = function () {
   }, {
     key: 'getUserNextChoice',
     value: function getUserNextChoice() {
-      //console.log(this.animalGallery);
-
       this.animalGallery.splice(index, 1); // to avoid repeats
-      //  this.showAnimal();
+
       //--------------------------------------------------------------GAME ENDS
       var galleryLen = this.animalGallery.length;
       var that = this;
@@ -187,7 +195,6 @@ var Animalia = function () {
   }, {
     key: 'showAnimal',
     value: function showAnimal() {
-
       this.getIndex();
       this.animalShowing.attr('src', this.animalGallery[index]).fadeIn();
     }
