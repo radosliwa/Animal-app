@@ -79,15 +79,13 @@ var $ = __webpack_require__(1);
 var index = void 0;
 
 var Animalia = function () {
-  function Animalia(animalGallery) {
+  function Animalia(animalGallery, animalNames) {
     _classCallCheck(this, Animalia);
 
-    this.animalNames = ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin'];
+    this.animalNames = animalNames;
     this.animalGallery = animalGallery;
     this.startButton = $('#start');
     this.gameArea = $('.gamearea');
-    //this.cellToClick = $('.cell');
-    //this.cellFront = $('.front');
     this.message = $('.message');
     this.animalShowing = $('.animal');
     this.finalMessage = $('.finalMessage');
@@ -153,21 +151,19 @@ var Animalia = function () {
           $(that.cellFront).addClass('front__non-hover');
           $(that.gameArrow).removeClass('animated bounceInLeft').addClass('rotate');
           $(that.message).addClass('animated bounceInLeft').show().text('good job!').delay(500) //needed first delay to keep message still for a sec
-
           .one('animationend', function () {
             $(that.cellToClick).off('click');
             $(this).addClass('animated bounceOutUp');
             $(that.animalShowing).fadeOut(700);
           }); //with on() fadeOut would fire even after else
-          setTimeout(function () {
 
+          setTimeout(function () {
             $(that.gameArrow).addClass('animated bounceInLeft').removeClass('rotate');
             $(that.cellFront).removeClass('front__non-hover').attr('style', "");
             $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
             that.getUserNextChoice();
           }, 1700);
         } else {
-
           $(this).addClass('front__non-hover');
           $(this.cellToClick).off('click');
           $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').one('animationend', function () {
@@ -181,12 +177,12 @@ var Animalia = function () {
     key: 'getUserNextChoice',
     value: function getUserNextChoice() {
       this.animalGallery.splice(index, 1); // to avoid repeats
-
       //--------------------------------------------------------------GAME ENDS
       var galleryLen = this.animalGallery.length;
       var that = this;
       if (galleryLen < 1) {
-        $(this.gameArea).fadeOut(1000);
+        $(that.gameArrow).removeClass('animated bounceInLeft');
+        $(this.gameArea).fadeOut(500);
         setTimeout(function () {
           $(that.finalMessage).css({ display: "flex" }).show().fadeOut(1800).queue(function () {
             location.reload(); //from server, not cache
@@ -211,7 +207,7 @@ var Animalia = function () {
   return Animalia;
 }();
 
-var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg']);
+var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 
 /***/ }),
 /* 1 */

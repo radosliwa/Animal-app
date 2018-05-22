@@ -373,24 +373,24 @@ img{
 .btn{
 
   width: 20%;
-  text-align: center;
-  padding: 1rem 1.5rem;
-  font-size: 1.5rem;
-  margin: 1rem;
-  cursor: pointer;
-  border: 2px solid black;
-  box-shadow: 0px 5px 14px 1px #000;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    margin: 1rem;
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 0px 5px 14px 1px #000;
 }
 
 .btn:hover{
-    border: 2px solid rgba(255, 255, 255, .3);
-    
-    }
+      border: 2px solid rgba(255, 255, 255, .3);
+      box-shadow: 0px 2px 8px  #000;
+      }
 
 .btn:active{
-    box-shadow: 0px 0px 3px  #000;
-    color: #f7f1f1;
-  }
+      box-shadow: 0px 0px 3px  #000;
+      color: #f7f1f1;
+    }
 
 .site-header{
   background-color:black;
