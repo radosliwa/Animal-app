@@ -1,5 +1,7 @@
 var $ = require('jquery');
 
+import * as Vars from './vars';
+
 let index;
 
 class Animalia{
@@ -16,7 +18,6 @@ class Animalia{
     this.gameArrow = $('.gamearea__pointer');
     this.events();
   }
-
   //-------------------------------------GAME BEGINS
   events(){
     this.startButton.click(()=> {
@@ -46,67 +47,48 @@ class Animalia{
 
   //------------------------------------- user engages
   getUserChoice (){
-
     let userChoice;
     let that = this;
     this.showAnimal();
-    this.cellToClick.one('click', function(e){
 
+
+    this.cellToClick.one('click', function(e){
       /* one turns off click for clicked
       element, off('click') below does that for the rest of the cells */
-
       userChoice = $(this).children().text();
       e.stopImmediatePropagation();
-
+      //-------------------------------------------IS CHOICE GOOD OR BAD
       if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
+        //-------------------------------------------GOOD CHOICE
+
         $(this).addClass('cell__flipped');
-        $(that.cellToClick).off('click');
-        $(that.cellFront).addClass('front__non-hover');
-        $(that.gameArrow).removeClass('animated bounceInLeft').addClass('rotate');
-        $(that.message).addClass('animated bounceInLeft').show().text('good job!').delay(500) //needed first delay to keep message still for a sec
-        .one('animationend', function(){
-          $(that.cellToClick).off('click');
-          $(this).addClass('animated bounceOutUp');
-          $(that.animalShowing).fadeOut(700);
-        }); //with on() fadeOut would fire even after else
-
-        setTimeout(()=>{
-          $(that.gameArrow).addClass('animated bounceInLeft').removeClass('rotate');
-          $(that.cellFront).removeClass('front__non-hover').attr('style', "");
-          $(that.message).removeClass('animated bounceInLeft bounceOutUp').text("");
-          that.getUserNextChoice();
-        }, 1700);
-
+        Vars.rightChoice(function(){
+          setTimeout(()=>{
+            $('.gamearea__pointer').addClass('animated bounceInLeft').removeClass('rotate');
+            $('.front').removeClass('front__non-hover').attr('style', "");
+            $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
+            that.getNextChoice();
+          }, 800);
+        });
       } else {
-        $(this).addClass('front__non-hover');
-        $(this.cellToClick).off('click');
-        $(that.message).addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!')
-        .one('animationend',function(){
+        //-------------------------------------------BAD CHOICE
+        Vars.badChoice(function(){
           $(this).removeClass('animated bounceInLeft');
-          $(that.cellFront).removeClass('front__non-hover');
-
         });
       }
     });
-
   }
 
-
-  getUserNextChoice (){
-    this.animalGallery.splice(index,1); // to avoid repeats
+  getNextChoice(){
+    this.animalGallery.splice(index,1);  // to avoid repeats
     //--------------------------------------------------------------GAME ENDS
     let galleryLen = this.animalGallery.length;
     let that = this;
     if(galleryLen<1){
-      $(that.gameArrow).removeClass('animated bounceInLeft')
-      $(this.gameArea).fadeOut(500);
-      setTimeout(function(){
-        $(that.finalMessage).css({display:"flex"}).show().fadeOut(1800).queue(function(){
-          location.reload();//from server, not cache
-        });
-      }, 1000);
+      Vars.gameEnds();
     }
     this.getUserChoice();
+
   }
 
   showAnimal(){

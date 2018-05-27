@@ -499,6 +499,7 @@ img{
     height: 160px;
     border: 6px solid rgba(255, 255, 255, .3);
     box-shadow: 0px 5px 18px 1px #000;
+    display:inline-block;
 
   }
 
@@ -589,7 +590,6 @@ img{
   border-radius: 50%;
   margin: 0 auto;
   width: 148px;
-
   height: 148px;
   top:30%;
   left:50%;
