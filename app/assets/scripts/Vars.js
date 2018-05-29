@@ -1,8 +1,5 @@
 var $ = require('jquery');
 
-// let gallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-// 'assets/images/animal-cat.jpg'];
-
 let rightChoice = (cb) =>{
 
   $('.cell').off('click');
@@ -10,7 +7,7 @@ let rightChoice = (cb) =>{
   $('.gamearea__pointer').removeClass('animated bounceInLeft').addClass('rotate');
   $('.message').addClass('animated bounceInLeft').show().text('good job!').delay(1500) //needed first delay to keep message still for a sec
   .one('animationend', function(){
-    //$(that.cellToClick).off('click');
+
     $('.message').addClass('animated bounceOutUp');
     $('.animal').fadeOut(700);
     cb();
@@ -46,9 +43,6 @@ let gameEnds = ()=>{
     });
   }, 1000);
 }
-
-
-
 
 
 export {rightChoice, badChoice, gameEnds};

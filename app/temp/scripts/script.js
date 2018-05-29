@@ -10581,9 +10581,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 var $ = __webpack_require__(0);
 
-// let gallery = ['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg',
-// 'assets/images/animal-cat.jpg'];
-
 var rightChoice = function rightChoice(cb) {
 
   $('.cell').off('click');
@@ -10591,7 +10588,7 @@ var rightChoice = function rightChoice(cb) {
   $('.gamearea__pointer').removeClass('animated bounceInLeft').addClass('rotate');
   $('.message').addClass('animated bounceInLeft').show().text('good job!').delay(1500) //needed first delay to keep message still for a sec
   .one('animationend', function () {
-    //$(that.cellToClick).off('click');
+
     $('.message').addClass('animated bounceOutUp');
     $('.animal').fadeOut(700);
     cb();
