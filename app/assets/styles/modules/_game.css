@@ -1,110 +1,94 @@
-
 /*---------------GAME*/
 
-#start{
-
+#start {
   font-weight: bold;
   position: relative;
   margin: 0 auto;
   border-radius: 10%;
   top: 30%;
-  display: none; /* will be changed by fadeTo()*/
-
-  &__visible{
+  display: none;
+  /* will be changed by fadeTo()*/
+  &__visible {
     opacity: 1;
   }
 }
 
 /*----------------------------GAME BEGINS*/
-.gamearea{
-  display: none; /* will be changed by fadeTo()*/
-  margin-top: 3%;
 
-  &__visible{
+.gamearea {
+  display: none;
+  /* will be changed by fadeTo()*/
+  margin-top: 3%;
+  z-index: 99;
+  &__visible {
     opacity: 1;
   }
-  &__columns{
+  &__columns {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    & > div{
+    &>div {
       display: inline-block;
       margin: 0 16px;
-      @mixin atSmall{
+      @mixin atSmall {
         margin: 0 3.5%;
       }
-      @mixin atLarge{
+      @mixin atLarge {
         margin: 0 1.5%;
       }
     }
   }
-  &__pointer{
-
+  &__pointer {
     background-color: #000;
     color: #FFF;
     font-size: 17px;
     position: relative;
-
-    @mixin atSmall{
-
-    }
-
-    &--p{
-    /*  */
+    @mixin atSmall {}
+    &--p {
+      /*  */
       font-size: 20px;
       padding: 0 2px;
-      @mixin atSmall{
+      @mixin atSmall {
         line-height: normal;
         padding: 0 8px;
       }
-
     }
-
-    &:after{
-
-    color: #000;
-    border-left: 20px solid;
-    border-top: 40px solid transparent;
-    border-bottom: 45px solid transparent;
-    display: inline-block;
-    content: '';
-    position: absolute;
-    right: -20px;
-    top:0;
-    height: 3px;
-    @mixin atSmall{
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
+    &:after {
+      color: #000;
+      border-left: 20px solid;
+      border-top: 40px solid transparent;
+      border-bottom: 45px solid transparent;
+      display: inline-block;
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 0;
+      height: 3px;
+      @mixin atSmall {
+        border-top: 30px solid transparent;
+        border-bottom: 30px solid transparent;
+      }
+    }
   }
-  }
-
-}
-
-
-
-
-&__picture{
-  border-radius: 50%;
-  overflow: hidden;
-  width: 130px;
-  height: 130px;
-  border: 5px solid rgba(255, 255, 255, .3);
-  box-shadow: 0px 5px 18px 1px #000;
-  @mixin atMedium{
-    width: 160px;
-    height: 160px;
-    border: 6px solid rgba(255, 255, 255, .3);
+  &__picture {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 130px;
+    height: 130px;
+    border: 5px solid rgba(255, 255, 255, .3);
     box-shadow: 0px 5px 18px 1px #000;
+    @mixin atMedium {
+      width: 160px;
+      height: 160px;
+      border: 6px solid rgba(255, 255, 255, .3);
+      box-shadow: 0px 5px 18px 1px #000;
+    }
   }
-
 }
-}
-
 
 /*----------------------------GAME BOARD*/
-.board{
 
+.board {
   position: relative;
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
@@ -116,32 +100,27 @@
   font-size: 23px;
   top: 30px;
   color: white;
-
-  @mixin atMedium{
-
+  @mixin atMedium {
     font-size: 22px;
     width: 64%;
     height: 33%;
   }
-  @mixin atLarge{
+  @mixin atLarge {
     width: 38%;
     height: 33%;
   }
-
-  & > div{
+  &>div {
     width: 50%;
-    @mixin atSmall{
+    @mixin atSmall {
       width: 25%;
     }
   }
-
-  @mixin atSuperLarge{
+  @mixin atSuperLarge {
     font-size: 30px;
-
   }
 }
 
-.cell{
+.cell {
   position: relative;
   border: white 1px solid;
   height: 80px;
@@ -149,23 +128,19 @@
   text-align: center;
   /*transition: all .5s ease-in-out;*/
   transition: transform .7s linear;
-  transform-style:preserve-3d;
-
-  @mixin atLarge{
+  transform-style: preserve-3d;
+  @mixin atLarge {
     height: 85px;
   }
-  @mixin atSuperLarge{
+  @mixin atSuperLarge {
     height: 100px;
   }
-  &__flipped{
+  &__flipped {
     transform: rotateY(-180deg);
   }
-
 }
 
-
-
-.front{
+.front {
   z-index: 333;
   width: 100%;
   height: 100%;
@@ -173,40 +148,37 @@
   background: #000;
   backface-visibility: hidden;
   line-height: 3.35;
-
-
-
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: rgba(229, 229, 229);
   }
-  &__non-hover:hover{
-    cursor:default;
-    background-color: #000;
+  &__non-hover {
+    &:hover {
+      cursor: none;
+      background: #000;
+    }
   }
-
-
 }
 
-.back{
+.back {
   width: 100%;
   height: 100%;
   position: absolute;
   overflow: hidden;
   transform: rotateY(-180deg);
-  backface-visibility:hidden;
+  backface-visibility: hidden;
 }
 
-.message{
+.message {
   font-size: 25px;
   display: none;
   text-align: center;
-  display: none;
-
+  z-index: 99;
 }
-.finalMessage{
+
+.finalMessage {
   display: none;
-  position:absolute;
+  position: absolute;
   color: red;
   text-align: center;
   border: 2px solid #000;
@@ -214,22 +186,33 @@
   margin: 0 auto;
   width: 148px;
   height: 148px;
-  top:30%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  &__text{
-    margin:0 auto;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &__text {
+    margin: 0 auto;
     align-self: center;
   }
 }
 
-.rotate{
+.rotate {
   animation: rotate 220ms ease-in 3;
 }
-@keyframes rotate{
-  0% {transform: rotate(0deg)}
-  25% {transform: rotate(90deg)}
-  50% {transform: rotate(180deg)}
-  75%{transform: rotate(270deg)}
-  100% {transform: rotate(360deg)}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  25% {
+    transform: rotate(90deg)
+  }
+  50% {
+    transform: rotate(180deg)
+  }
+  75% {
+    transform: rotate(270deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
 }

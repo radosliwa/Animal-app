@@ -16,26 +16,23 @@ let rightChoice = (cb) =>{
 
 
 let badChoice = ()=>{
-  //console.log(this);
+
+
+
   $('.front').addClass('front__non-hover');
-  $('.message').addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!')
+  $('.message').addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100)
   .one('animationend',function(){
     $(this).removeClass('animated bounceInLeft');
-    $('.front').removeClass('front__non-hover');
+    setTimeout(function(){
+
+      $('.front').removeClass('front__non-hover');
+    }, 500)
   });
 }
 
-// let intervalAfterChoice = (cb) =>{
-//   // setTimeout(()=>{
-//   //   $('.gamearea__pointer').addClass('animated bounceInLeft').removeClass('rotate');
-//   //   $('.front').removeClass('front__non-hover').attr('style', "");
-//   //   $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
-//   //   cb();
-//   // }, 800);
-// }
 
 let gameEnds = ()=>{
-  $('.gamearea__pointer').removeClass('animated bounceInLeft')
+  $('.gamearea__pointer').removeClass('animated bounceInLeft');
   $('.gamearea').fadeOut(500);
   setTimeout(function(){
     $('.finalMessage').css({display:"flex"}).show().fadeOut(1800).queue(function(){

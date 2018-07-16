@@ -29,12 +29,14 @@ class Animalia{
   createRandomBoard(){
     let arr = this.animalNames;
     let arrSort = arr.sort(()=>Math.random() - 0.5);
+    let cells ='';
     for(let i = 0; i < arr.length; i++){
-      $('.board').append(`<div class="cell">
+      cells +=`<div class="cell">
       <div class="front">${arrSort[i]}</div>
       <div class="back"><img src="assets/images/animal-${arrSort[i]}.jpg" alt="${arrSort[i]}"></div>
-      </div>`);
+      </div>`;
     }
+    $('.board').html(cells);
   }
 
   startGame (){
@@ -72,9 +74,9 @@ class Animalia{
         });
       } else {
         //-------------------------------------------BAD CHOICE
-        Vars.badChoice(function(){
-          $(this).removeClass('animated bounceInLeft');
-        });
+        console.log(this);
+        Vars.badChoice();
+
       }
     });
   }

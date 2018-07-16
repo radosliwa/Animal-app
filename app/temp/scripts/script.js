@@ -10490,9 +10490,11 @@ var Animalia = function () {
       var arrSort = arr.sort(function () {
         return Math.random() - 0.5;
       });
+      var cells = '';
       for (var i = 0; i < arr.length; i++) {
-        $('.board').append('<div class="cell">\n      <div class="front">' + arrSort[i] + '</div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>');
+        cells += '<div class="cell">\n      <div class="front">' + arrSort[i] + '</div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>';
       }
+      $('.board').html(cells);
     }
   }, {
     key: 'startGame',
@@ -10533,9 +10535,8 @@ var Animalia = function () {
           });
         } else {
           //-------------------------------------------BAD CHOICE
-          Vars.badChoice(function () {
-            $(this).removeClass('animated bounceInLeft');
-          });
+          console.log(this);
+          Vars.badChoice();
         }
       });
     }
@@ -10596,22 +10597,16 @@ var rightChoice = function rightChoice(cb) {
 };
 
 var badChoice = function badChoice() {
-  //console.log(this);
+
   $('.front').addClass('front__non-hover');
-  $('.message').addClass('animated bounceInLeft').show().delay(1100).text('wrong, try again!').one('animationend', function () {
+  $('.message').addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100).one('animationend', function () {
     $(this).removeClass('animated bounceInLeft');
-    $('.front').removeClass('front__non-hover');
+    setTimeout(function () {
+
+      $('.front').removeClass('front__non-hover');
+    }, 500);
   });
 };
-
-// let intervalAfterChoice = (cb) =>{
-//   // setTimeout(()=>{
-//   //   $('.gamearea__pointer').addClass('animated bounceInLeft').removeClass('rotate');
-//   //   $('.front').removeClass('front__non-hover').attr('style', "");
-//   //   $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
-//   //   cb();
-//   // }, 800);
-// }
 
 var gameEnds = function gameEnds() {
   $('.gamearea__pointer').removeClass('animated bounceInLeft');
