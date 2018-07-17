@@ -5,7 +5,8 @@
   position: relative;
   margin: 0 auto;
   border-radius: 10%;
-  top: 30%;
+  top: 15%;
+  background-color: #D8D79F;
   display: none;
   /* will be changed by fadeTo()*/
   &__visible {
@@ -73,9 +74,9 @@
   &__picture {
     border-radius: 50%;
     overflow: hidden;
-    width: 130px;
-    height: 130px;
-    border: 5px solid rgba(255, 255, 255, .3);
+    width: 120px;
+    height: 120px;
+    border: 4px solid rgba(255, 255, 255, .3);
     box-shadow: 0px 5px 18px 1px #000;
     @mixin atMedium {
       width: 160px;
@@ -92,36 +93,45 @@
   position: relative;
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
-  width: 80%;
-  height: 50%;
+  background-color: #D8D79F;
+  width: 70%;
+  height: 40%;
   margin: 1% auto 0 auto;
   border-radius: 10%;
   overflow: hidden;
   font-size: 23px;
   top: 30px;
   color: white;
+  display: flex;
+  flex-flow: row wrap;
+  cursor: none;
   @mixin atMedium {
-    font-size: 22px;
-    width: 64%;
-    height: 33%;
-  }
-  @mixin atLarge {
-    width: 38%;
-    height: 33%;
-  }
-  &>div {
     width: 50%;
-    @mixin atSmall {
-      width: 25%;
-    }
+    height: 40%;
   }
-  @mixin atSuperLarge {
-    font-size: 30px;
+  @mixin atMedium {
+    width: 40%;
+    height: 50%;
+  }
+  /*-------------------CELLS*/
+  &>div {
+    flex: 50%;
+    @mixin atSmall {}
+    @mixin atMedium {
+      flex: 25%;
+      font-size: 1em;
+    }
+    @mixin atLarge {
+      font-size: 1.15em;
+    }
+    @mixin atSuperLarge {
+      font-size: 1.25em;
+    }
   }
 }
 
 .cell {
-  position: relative;
+  margin: auto;
   border: white 1px solid;
   height: 80px;
   display: inline-block;
@@ -147,7 +157,6 @@
   position: absolute;
   background: #000;
   backface-visibility: hidden;
-  line-height: 3.35;
   &:hover {
     cursor: pointer;
     background-color: rgba(229, 229, 229);
@@ -165,6 +174,7 @@
   height: 100%;
   position: absolute;
   overflow: hidden;
+  background-color: #000;
   transform: rotateY(-180deg);
   backface-visibility: hidden;
 }
@@ -178,20 +188,18 @@
 
 .finalMessage {
   display: none;
-  position: absolute;
+  position: relative;
+  margin: 10% auto 0 auto;
   color: red;
   text-align: center;
   border: 2px solid #000;
   border-radius: 50%;
-  margin: 0 auto;
   width: 148px;
   height: 148px;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  box-shadow: 0px 5px 14px 1px #000;
   &__text {
-    margin: 0 auto;
-    align-self: center;
+    margin: 40% auto 0 auto;
   }
 }
 

@@ -1,8 +1,10 @@
 var $ = require('jquery');
 
-import * as Vars from './vars';
+import * as Choices from './Choices';
+
 
 let index;
+
 
 class Animalia{
 
@@ -32,7 +34,7 @@ class Animalia{
     let cells ='';
     for(let i = 0; i < arr.length; i++){
       cells +=`<div class="cell">
-      <div class="front">${arrSort[i]}</div>
+      <div class="front"><p>${arrSort[i]}</p></div>
       <div class="back"><img src="assets/images/animal-${arrSort[i]}.jpg" alt="${arrSort[i]}"></div>
       </div>`;
     }
@@ -40,7 +42,8 @@ class Animalia{
   }
 
   startGame (){
-    this.cellToClick = $('.cell');
+    this.cellToClick = $('.cell'); /*here not in constructor cause
+    they dont exist until createRandomBoard*/
     this.cellFront = $('.front');
     this.startButton.hide();
     this.gameArea.fadeTo('fast', 1);
@@ -52,31 +55,30 @@ class Animalia{
     let userChoice;
     let that = this;
     this.showAnimal();
-
-
     this.cellToClick.one('click', function(e){
       /* one turns off click for clicked
       element, off('click') below does that for the rest of the cells */
       userChoice = $(this).children().text();
       e.stopImmediatePropagation();
+
       //-------------------------------------------IS CHOICE GOOD OR BAD
+
       if(that.animalGallery[index].includes(userChoice) && userChoice !==""){
         //-------------------------------------------GOOD CHOICE
-
         $(this).addClass('cell__flipped');
-        Vars.rightChoice(function(){
+
+        Choices.rightChoice(function(){
           setTimeout(()=>{
-            $('.gamearea__pointer').addClass('animated bounceInLeft').removeClass('rotate');
-            $('.front').removeClass('front__non-hover').attr('style', "");
-            $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
+            that.gameArrow.addClass('animated bounceInLeft').removeClass('rotate');
+            that.cellFront.removeClass('front__non-hover').attr('style', "");
+            that.message.removeClass('animated bounceInLeft bounceOutUp').text("");
             that.getNextChoice();
-          }, 800);
+          }, 600);
         });
       } else {
         //-------------------------------------------BAD CHOICE
         console.log(this);
-        Vars.badChoice();
-
+        Choices.badChoice();
       }
     });
   }
@@ -87,10 +89,9 @@ class Animalia{
     let galleryLen = this.animalGallery.length;
     let that = this;
     if(galleryLen<1){
-      Vars.gameEnds();
+      Choices.gameEnds();
     }
     this.getUserChoice();
-
   }
 
   showAnimal(){

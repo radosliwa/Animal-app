@@ -10443,9 +10443,9 @@ return jQuery;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _vars = __webpack_require__(2);
+var _Choices = __webpack_require__(2);
 
-var Vars = _interopRequireWildcard(_vars);
+var Choices = _interopRequireWildcard(_Choices);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -10492,14 +10492,15 @@ var Animalia = function () {
       });
       var cells = '';
       for (var i = 0; i < arr.length; i++) {
-        cells += '<div class="cell">\n      <div class="front">' + arrSort[i] + '</div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>';
+        cells += '<div class="cell">\n      <div class="front"><p>' + arrSort[i] + '</p></div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>';
       }
       $('.board').html(cells);
     }
   }, {
     key: 'startGame',
     value: function startGame() {
-      this.cellToClick = $('.cell');
+      this.cellToClick = $('.cell'); /*here not in constructor cause
+                                     they dont exist until createRandomBoard*/
       this.cellFront = $('.front');
       this.startButton.hide();
       this.gameArea.fadeTo('fast', 1);
@@ -10514,29 +10515,30 @@ var Animalia = function () {
       var userChoice = void 0;
       var that = this;
       this.showAnimal();
-
       this.cellToClick.one('click', function (e) {
         /* one turns off click for clicked
         element, off('click') below does that for the rest of the cells */
         userChoice = $(this).children().text();
         e.stopImmediatePropagation();
+
         //-------------------------------------------IS CHOICE GOOD OR BAD
+
         if (that.animalGallery[index].includes(userChoice) && userChoice !== "") {
           //-------------------------------------------GOOD CHOICE
-
           $(this).addClass('cell__flipped');
-          Vars.rightChoice(function () {
+
+          Choices.rightChoice(function () {
             setTimeout(function () {
-              $('.gamearea__pointer').addClass('animated bounceInLeft').removeClass('rotate');
-              $('.front').removeClass('front__non-hover').attr('style', "");
-              $('.message').removeClass('animated bounceInLeft bounceOutUp').text("");
+              that.gameArrow.addClass('animated bounceInLeft').removeClass('rotate');
+              that.cellFront.removeClass('front__non-hover').attr('style', "");
+              that.message.removeClass('animated bounceInLeft bounceOutUp').text("");
               that.getNextChoice();
-            }, 800);
+            }, 600);
           });
         } else {
           //-------------------------------------------BAD CHOICE
           console.log(this);
-          Vars.badChoice();
+          Choices.badChoice();
         }
       });
     }
@@ -10548,7 +10550,7 @@ var Animalia = function () {
       var galleryLen = this.animalGallery.length;
       var that = this;
       if (galleryLen < 1) {
-        Vars.gameEnds();
+        Choices.gameEnds();
       }
       this.getUserChoice();
     }
@@ -10582,8 +10584,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var $ = __webpack_require__(0);
 
-var rightChoice = function rightChoice(cb) {
+var $front = $('.front');
 
+var rightChoice = function rightChoice(cb) {
+  console.log($front);
   $('.cell').off('click');
   $('.front').addClass('front__non-hover');
   $('.gamearea__pointer').removeClass('animated bounceInLeft').addClass('rotate');
@@ -10610,9 +10614,9 @@ var badChoice = function badChoice() {
 
 var gameEnds = function gameEnds() {
   $('.gamearea__pointer').removeClass('animated bounceInLeft');
-  $('.gamearea').fadeOut(500);
+  $('.gamearea').fadeOut(400);
   setTimeout(function () {
-    $('.finalMessage').css({ display: "flex" }).show().fadeOut(1800).queue(function () {
+    $('.finalMessage').css({ display: "block" }).addClass('animated bounceInUp').show(500).fadeOut(1500).queue(function () {
       location.reload(); //from server, not cache
     });
   }, 1000);
