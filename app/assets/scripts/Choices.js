@@ -13,7 +13,7 @@ const rightChoice = (cb) =>{
     $('.message').addClass('animated bounceOutUp');
     $('.animal').fadeOut(700);
     cb();
-  }); //with on() fadeOut would fire even after else
+  }); //with on() fadeOut would fire even after a wrong choice due to message animation! 
 }
 
 
@@ -21,12 +21,10 @@ const badChoice = ()=>{
 
   $('.front').addClass('front__non-hover');
   $('.message').addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100)
-  .one('animationend',function(){
+  .on('animationend',function(){
     $(this).removeClass('animated bounceInLeft');
-    setTimeout(function(){
+    $('.front').removeClass('front__non-hover');
 
-      $('.front').removeClass('front__non-hover');
-    }, 500)
   });
 }
 

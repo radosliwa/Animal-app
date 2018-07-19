@@ -25,14 +25,18 @@
     opacity: 1;
   }
   &__columns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @mixin atSmall {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     &>div {
-      display: inline-block;
-      margin: 0 16px;
+      display: block;
+      margin: 0 auto;
       @mixin atSmall {
+        display: inline-block;
         margin: 0 3.5%;
+        margin: 0 16px;
       }
       @mixin atLarge {
         margin: 0 1.5%;
@@ -105,11 +109,12 @@
   display: flex;
   flex-flow: row wrap;
   cursor: none;
-  @mixin atMedium {
+  @mixin atSmall {
     width: 50%;
     height: 40%;
   }
-  @mixin atMedium {
+  @mixin atMedium {}
+  @mixin atSuperLarge {
     width: 40%;
     height: 50%;
   }

@@ -456,21 +456,26 @@ img {
     opacity: 1;
   }
 
+@media(min-width: 450px) {
+
 .gamearea__columns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center
+  }
   }
 
 .gamearea__columns>div {
-      display: inline-block;
-      margin: 0 16px;
+      display: block;
+      margin: 0 auto;
     }
 
 @media(min-width: 450px) {
 
 .gamearea__columns>div {
-        margin: 0 3.5%
+        display: inline-block;
+        margin: 0 3.5%;
+        margin: 0 16px
     }
   }
 
@@ -565,7 +570,7 @@ img {
   cursor: none;
 }
 
-@media(min-width: 772px) {
+@media(min-width: 450px) {
 
 .board {
     width: 50%;
@@ -574,6 +579,9 @@ img {
   }
 
 @media(min-width: 772px) {
+  }
+
+@media(min-width: 1080px) {
 
 .board {
     width: 40%;
