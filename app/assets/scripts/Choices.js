@@ -1,26 +1,23 @@
 var $ = require('jquery');
+import * as Values from './Values';
 
-var $front = $('.front');
 
 const rightChoice = (cb) =>{
-  console.log($front);
   $('.cell').off('click');
   $('.front').addClass('front__non-hover');
-  $('.gamearea__pointer').removeClass('animated bounceInLeft').addClass('rotate');
-  $('.message').addClass('animated bounceInLeft').show().text('good job!').delay(1500) //needed first delay to keep message still for a sec
+  Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
+  Values.$message.addClass('animated bounceInLeft').show().text('good job!').delay(1500) //needed first delay to keep message still for a sec
   .one('animationend', function(){
-
-    $('.message').addClass('animated bounceOutUp');
-    $('.animal').fadeOut(700);
+    Values.$message.addClass('animated bounceOutUp');
+    Values.$animalShowing.fadeOut(700);
     cb();
-  }); //with on() fadeOut would fire even after a wrong choice due to message animation! 
+  }); //with on() fadeOut would fire even after a wrong choice due to message animation!
 }
 
 
 const badChoice = ()=>{
-
   $('.front').addClass('front__non-hover');
-  $('.message').addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100)
+  Values.$message.addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100)
   .on('animationend',function(){
     $(this).removeClass('animated bounceInLeft');
     $('.front').removeClass('front__non-hover');
@@ -30,10 +27,10 @@ const badChoice = ()=>{
 
 
 const gameEnds = ()=>{
-  $('.gamearea__pointer').removeClass('animated bounceInLeft');
-  $('.gamearea').fadeOut(400);
+  Values.$gameArrow.removeClass('animated bounceInLeft');
+  Values.$gameArea.fadeOut(400);
   setTimeout(function(){
-    $('.finalMessage').css({display:"block"}).addClass('animated bounceInUp').show(500).fadeOut(1500).queue(function(){
+  Values.$finalMessage.css({display:"block"}).addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function(){
       location.reload();//from server, not cache
     });
   }, 1000);
