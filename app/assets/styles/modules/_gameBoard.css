@@ -1,0 +1,131 @@
+/*----------------------------GAME BOARD*/
+
+.board {
+  position: relative;
+  border: 6px solid rgba(255, 255, 255, .3);
+  box-shadow: 0px 5px 10px 3px #000;
+  background-color: #D8D79F;
+  /* width: 70%; */
+  height: 40%;
+  margin: 1% auto 0 auto;
+  border-radius: 10%;
+  overflow: hidden;
+  font-size: 23px;
+  top: 30px;
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  cursor: none;
+  @mixin atSmall {
+    /* width: 50%;
+    height: 40%; */
+    width: 95%;
+  }
+  @mixin atMedium {
+    width: 75%;
+  }
+  @mixin atLarge {}
+  @mixin atSuperLarge {
+    width: 45%;
+    height: 50%;
+  }
+  /*-------------------CELLS*/
+  &>div {
+    flex: 25%;
+    @mixin atSmall {}
+    @mixin atMedium {
+      flex: 25%;
+      font-size: 1em;
+    }
+    @mixin atLarge {
+      font-size: 1.15em;
+    }
+    @mixin atSuperLarge {
+      font-size: 1.25em;
+    }
+  }
+}
+
+.cell {
+  margin: auto;
+  border: white 1px solid;
+  height: 80px;
+  display: inline-block;
+  text-align: center;
+  /*transition: all .5s ease-in-out;*/
+  transition: transform .7s linear;
+  transform-style: preserve-3d;
+  @mixin atLarge {
+    height: 85px;
+  }
+  @mixin atSuperLarge {
+    height: 100px;
+  }
+  &__flipped {
+    transform: rotateY(-180deg);
+  }
+  &--avoidClicks {
+    pointer-events: none;
+  }
+}
+
+.front {
+  z-index: 333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #000;
+  backface-visibility: hidden;
+  &:hover {
+    cursor: pointer;
+    @mixin atMedium {
+      background-color: rgba(229, 229, 229);
+    }
+  }
+  &:active {
+    color: orange;
+  }
+  &__non-hover {
+    &:hover {
+      cursor: none;
+      background: #000;
+    }
+  }
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  background-color: #000;
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.message {
+  font-size: 25px;
+  display: none;
+  text-align: center;
+  z-index: 99;
+}
+
+.finalMessage {
+  display: none;
+  position: relative;
+  margin: 10% auto 0 auto;
+  color: red;
+  text-align: center;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 148px;
+  height: 148px;
+  border: 2px solid black;
+  background-color: #D8D79F;
+  box-shadow: 0px 5px 14px 1px #000;
+  &__text {
+    margin: 40% auto 0 auto;
+  }
+}

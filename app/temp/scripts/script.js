@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10469,83 +10469,20 @@ exports.$gameArrow = $gameArrow;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.gameEnds = exports.badChoice = exports.rightChoice = undefined;
-
-var _Values = __webpack_require__(1);
-
-var Values = _interopRequireWildcard(_Values);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var $ = __webpack_require__(0);
-
-
-var rightChoice = function rightChoice(cb) {
-  $('.cell').off('click');
-  $('.front').addClass('front__non-hover');
-  Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
-  Values.$message.addClass('animated bounceInLeft').show().text('good job!').delay(1500) //needed first delay to keep message still for a sec
-  .one('animationend', function () {
-    Values.$message.addClass('animated bounceOutUp');
-    Values.$animalShowing.fadeOut(700);
-    cb();
-  }); //with on() fadeOut would fire even after a wrong choice due to message animation!
-};
-
-var badChoice = function badChoice() {
-  $('.front').addClass('front__non-hover');
-  Values.$message.addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100).on('animationend', function () {
-    $(this).removeClass('animated bounceInLeft');
-    $('.front').removeClass('front__non-hover');
-  });
-};
-
-var gameEnds = function gameEnds() {
-  Values.$gameArrow.removeClass('animated bounceInLeft');
-  Values.$gameArea.fadeOut(400);
-  setTimeout(function () {
-    Values.$finalMessage.css({ display: "block" }).addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function () {
-      location.reload(); //from server, not cache
-    });
-  }, 1000);
-};
-
-exports.rightChoice = rightChoice;
-exports.badChoice = badChoice;
-exports.gameEnds = gameEnds;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Values = __webpack_require__(1);
-
-var Values = _interopRequireWildcard(_Values);
-
-var _Choices = __webpack_require__(2);
-
-var Choices = _interopRequireWildcard(_Choices);
-
-var _AnimaliaClass = __webpack_require__(4);
+var _AnimaliaClass = __webpack_require__(3);
 
 var _AnimaliaClass2 = _interopRequireDefault(_AnimaliaClass);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 var $ = __webpack_require__(0);
 
 var animalia = new _AnimaliaClass2.default(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 
+console.log(animalia.showAnimal);
+
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10561,7 +10498,7 @@ var _Values = __webpack_require__(1);
 
 var Values = _interopRequireWildcard(_Values);
 
-var _Choices = __webpack_require__(2);
+var _Choices = __webpack_require__(4);
 
 var Choices = _interopRequireWildcard(_Choices);
 
@@ -10577,6 +10514,7 @@ var Animalia = function () {
 
     this.animalNames = animalNames;
     this.animalGallery = animalGallery;
+
     Values.$startButton.fadeTo('slow', 1);
     this.events();
   }
@@ -10591,7 +10529,6 @@ var Animalia = function () {
       Values.$startButton.click(function () {
         _this.createRandomBoard();
         _this.startGame();
-        console.log(Values.index);
       });
     }
   }, {
@@ -10628,28 +10565,31 @@ var Animalia = function () {
       this.showAnimal();
       this.cellToClick.one('click', function (e) {
         /* one turns off click for clicked
-        element, off('click') below does that for the rest of the cells */
+        element, off('click') in Choices does that for the rest of the cells */
         userChoice = $(this).children().text();
         e.stopImmediatePropagation();
 
-        //-------------------------------------------IS CHOICE GOOD OR BAD
+        //-------------------------------------------IS CHOICE RIGHT OR WRONG
 
         if (that.animalGallery[Values.index].includes(userChoice) && userChoice !== "") {
-          //-------------------------------------------GOOD CHOICE
+          //-------------------------------------------RIGHT CHOICE
           $(this).addClass('cell__flipped');
 
           Choices.rightChoice(function () {
             setTimeout(function () {
-              Values.$gameArrow.addClass('animated bounceInLeft').removeClass('rotate');
+              Values.$gameArrow.removeClass('rotate');
+              Values.$gameArrow.addClass('animated bounceInLeft');
               that.cellFront.removeClass('front__non-hover').attr('style', "");
               Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
               that.getNextChoice();
             }, 600);
           });
         } else {
-          //-------------------------------------------BAD CHOICE
-          console.log(this);
-          Choices.badChoice();
+
+          //-------------------------------------------WRONG CHOICE
+
+          Choices.wrongChoice();
+          $(this).removeClass('cell--avoidClicks');
         }
       });
     }
@@ -10682,6 +10622,63 @@ var Animalia = function () {
 }();
 
 exports.default = Animalia;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.gameEnds = exports.wrongChoice = exports.rightChoice = undefined;
+
+var _Values = __webpack_require__(1);
+
+var Values = _interopRequireWildcard(_Values);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var $ = __webpack_require__(0);
+
+
+var rightChoice = function rightChoice(cb) {
+  $('.cell').off('click');
+  $('.front').addClass('front__non-hover');
+  Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
+  Values.$message.addClass('animated bounceInLeft').show().text('good job!').delay(1300) //needed first delay to keep message still for a sec
+  .one('animationend', function () {
+    Values.$message.addClass('animated bounceOutUp');
+    Values.$animalShowing.fadeOut(650);
+    cb();
+  }); //with on() fadeOut would fire even after a wrong choice due to message animation!
+};
+
+var wrongChoice = function wrongChoice() {
+  $('.cell').addClass('cell--avoidClicks');
+  $('.front').addClass('front__non-hover');
+  Values.$message.addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100).on('animationend', function () {
+    $(this).removeClass('animated bounceInLeft');
+    $('.front').removeClass('front__non-hover');
+    $('.cell').removeClass('cell--avoidClicks');
+  });
+};
+
+var gameEnds = function gameEnds() {
+  Values.$gameArea.fadeOut(400);
+  Values.$gameArrow.fadeOut(400);
+  setTimeout(function () {
+    Values.$finalMessage.css({ display: "block" }).addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function () {
+      location.reload(); //from server, not cache
+    });
+  }, 1000);
+};
+
+exports.rightChoice = rightChoice;
+exports.wrongChoice = wrongChoice;
+exports.gameEnds = gameEnds;
 
 /***/ })
 /******/ ]);

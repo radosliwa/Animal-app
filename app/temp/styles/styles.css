@@ -432,7 +432,7 @@ img {
   position: relative;
   margin: 0 auto;
   border-radius: 10%;
-  top: 18%;
+  top: 20%;
   background-color: #D8D79F;
   display: none;
 }
@@ -448,9 +448,16 @@ img {
 .gamearea {
   display: none;
   /* will be changed by fadeTo()*/
-  margin-top: 5%;
+  margin-top: 20%;
   z-index: 99;
 }
+
+@media(min-width: 976px) {
+
+.gamearea {
+    margin-top: 5%
+}
+  }
 
 .gamearea__visible {
     opacity: 1;
@@ -461,7 +468,8 @@ img {
 .gamearea__columns {
       display: flex;
       justify-content: center;
-      align-items: center
+      align-items: center;
+      flex-direction: row
   }
   }
 
@@ -470,11 +478,10 @@ img {
       margin: 0 auto;
     }
 
-@media(min-width: 450px) {
+@media(min-width: 772px) {
 
 .gamearea__columns>div {
         display: inline-block;
-        margin: 0 3.5%;
         margin: 0 16px
     }
   }
@@ -487,13 +494,28 @@ img {
   }
 
 .gamearea__pointer {
-    background-color: #000;
     color: #FFF;
     font-size: 17px;
-    position: relative;
   }
 
-@media(min-width: 450px) {
+.gamearea__pointer.bounceInLeft, .gamearea__pointer.rotate {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+/* without centering pointer
+    was showing up on the left
+     and was moving to the
+    left of the screen right after removing bounceInLeft */
+
+@media(min-width: 772px) {
+
+.gamearea__pointer {
+      position: relative;
+      display: inline-block;
+      background-color: #000
+  }
   }
 
 .gamearea__pointer--p {
@@ -515,17 +537,18 @@ img {
       border-left: 20px solid;
       border-top: 40px solid transparent;
       border-bottom: 45px solid transparent;
-      display: inline-block;
-      content: '';
-      position: absolute;
-      right: -20px;
-      top: 0;
-      height: 3px;
+      display: none;
     }
 
-@media(min-width: 450px) {
+@media(min-width: 772px) {
 
 .gamearea__pointer:after {
+        content: '';
+        position: absolute;
+        right: -20px;
+        top: 0;
+        height: 3px;
+        display: inline-block;
         border-top: 30px solid transparent;
         border-bottom: 30px solid transparent
     }
@@ -551,6 +574,57 @@ img {
   }
   }
 
+.rotate {
+  -webkit-animation: rotate 130ms ease-in-out 5;
+          animation: rotate 130ms ease-in-out 5;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg)
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg)
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg)
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg)
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg)
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg)
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg)
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg)
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+  }
+}
+
 /*----------------------------GAME BOARD*/
 
 .board {
@@ -558,7 +632,7 @@ img {
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
   background-color: #D8D79F;
-  width: 70%;
+  /* width: 70%; */
   height: 40%;
   margin: 1% auto 0 auto;
   border-radius: 10%;
@@ -574,18 +648,26 @@ img {
 @media(min-width: 450px) {
 
 .board {
-    width: 50%;
-    height: 40%
+    /* width: 50%;
+    height: 40%; */
+    width: 95%
 }
   }
 
 @media(min-width: 772px) {
+
+.board {
+    width: 75%
+}
+  }
+
+@media(min-width: 976px) {
   }
 
 @media(min-width: 1080px) {
 
 .board {
-    width: 40%;
+    width: 45%;
     height: 50%
 }
   }
@@ -593,7 +675,7 @@ img {
 /*-------------------CELLS*/
 
 .board>div {
-    flex: 50%;
+    flex: 25%;
   }
 
 @media(min-width: 450px) {
@@ -654,6 +736,10 @@ img {
             transform: rotateY(-180deg);
   }
 
+.cell--avoidClicks {
+    pointer-events: none;
+  }
+
 .front {
   z-index: 333;
   width: 100%;
@@ -666,7 +752,17 @@ img {
 
 .front:hover {
     cursor: pointer;
-    background-color: rgba(229, 229, 229);
+  }
+
+@media(min-width: 772px) {
+
+.front:hover {
+      background-color: rgba(229, 229, 229)
+  }
+  }
+
+.front:active {
+    color: orange;
   }
 
 .front__non-hover:hover {
@@ -684,6 +780,8 @@ img {
           transform: rotateY(-180deg);
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .message {
@@ -711,57 +809,6 @@ img {
 .finalMessage__text {
     margin: 40% auto 0 auto;
   }
-
-.rotate {
-  -webkit-animation: rotate 220ms ease-in 3;
-          animation: rotate 220ms ease-in 3;
-}
-
-@-webkit-keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg)
-  }
-  25% {
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg)
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg)
-  }
-  75% {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg)
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg)
-  }
-}
-
-@keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg)
-  }
-  25% {
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg)
-  }
-  50% {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg)
-  }
-  75% {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg)
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg)
-  }
-}
 
 .site-footer {
   background-color: black;

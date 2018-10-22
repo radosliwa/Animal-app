@@ -4,11 +4,13 @@ import * as Values from './Values';
 import * as Choices from './Choices';
 
 
+
 export default class Animalia{
 
   constructor(animalGallery, animalNames){
     this.animalNames = animalNames;
     this.animalGallery = animalGallery;
+
     Values.$startButton.fadeTo('slow', 1);
     this.events();
   }
@@ -17,7 +19,7 @@ export default class Animalia{
     Values.$startButton.click(()=> {
       this.createRandomBoard();
       this.startGame();
-      console.log(Values.index);
+
     });
   }
 
@@ -32,6 +34,7 @@ export default class Animalia{
       </div>`;
     }
     $('.board').html(cells);
+
   }
 
   startGame (){
@@ -50,28 +53,31 @@ export default class Animalia{
     this.showAnimal();
     this.cellToClick.one('click', function(e){
       /* one turns off click for clicked
-      element, off('click') below does that for the rest of the cells */
+      element, off('click') in Choices does that for the rest of the cells */
       userChoice = $(this).children().text();
       e.stopImmediatePropagation();
 
-      //-------------------------------------------IS CHOICE GOOD OR BAD
+      //-------------------------------------------IS CHOICE RIGHT OR WRONG
 
       if(that.animalGallery[Values.index].includes(userChoice) && userChoice !==""){
-        //-------------------------------------------GOOD CHOICE
+        //-------------------------------------------RIGHT CHOICE
         $(this).addClass('cell__flipped');
 
         Choices.rightChoice(function(){
           setTimeout(()=>{
-            Values.$gameArrow.addClass('animated bounceInLeft').removeClass('rotate');
+              Values.$gameArrow.removeClass('rotate');
+            Values.$gameArrow.addClass('animated bounceInLeft');
             that.cellFront.removeClass('front__non-hover').attr('style', "");
             Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
             that.getNextChoice();
           }, 600);
         });
       } else {
-        //-------------------------------------------BAD CHOICE
-        console.log(this);
-        Choices.badChoice();
+
+        //-------------------------------------------WRONG CHOICE
+
+        Choices.wrongChoice();
+        $(this).removeClass('cell--avoidClicks');
       }
     });
   }

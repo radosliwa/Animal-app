@@ -3,5 +3,6 @@
 @import 'base/_mixins';
 @import "base/_global";
 @import "modules/_site-header";
-@import "modules/_game";
+@import "modules/_gameArea";
+@import "modules/_gameBoard";
 @import "modules/_site-footer";
