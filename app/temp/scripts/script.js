@@ -10479,7 +10479,17 @@ var $ = __webpack_require__(0);
 
 var animalia = new _AnimaliaClass2.default(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 
-console.log(animalia.showAnimal);
+// var person =(function(){
+//   var name = "Radek";
+//   function giveName(){
+//     alert(name);
+//   };
+//   return{
+//     giveName: giveName
+//   }
+// })();
+// console.log(person.giveName());
+// // person.name = 'Tomek';
 
 /***/ }),
 /* 3 */
@@ -10509,7 +10519,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var $ = __webpack_require__(0);
 
 var Animalia = function () {
-  function Animalia(animalGallery, animalNames) {
+  function Animalia(animalGallery, animalNames, number) {
     _classCallCheck(this, Animalia);
 
     this.animalNames = animalNames;

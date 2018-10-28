@@ -19,10 +19,13 @@
 .gamearea {
   display: none;
   /* will be changed by fadeTo()*/
-  margin-top: 20%;
+  margin-top: 6%;
   z-index: 99;
-  @mixin atLarge {
-    margin-top: 5%;
+  @mixin atSmall {
+    margin-top: 10%;
+  }
+  @mixin atSuperLarge {
+    margin-top: 6%;
   }
   &__visible {
     opacity: 1;
@@ -37,18 +40,16 @@
     &>div {
       display: block;
       margin: 0 auto;
-      @mixin atMedium {
+      @mixin atSmall {
         display: inline-block;
-        margin: 0 16px;
+        margin: 0 4vw;
       }
-      @mixin atLarge {
-        margin: 0 1.5%;
-      }
+      @mixin atMedium {}
+      @mixin atLarge {}
     }
   }
   &__pointer {
     color: #FFF;
-    font-size: 17px;
     &.bounceInLeft, &.rotate {
       display: flex;
       justify-content: center;
@@ -65,29 +66,45 @@
     }
     &--p {
       /*  */
-      font-size: 20px;
+      position: relative;
       padding: 0 2px;
+      z-index: 99;
       @mixin atSmall {
-        line-height: normal;
-        padding: 0 8px;
+        padding: 0 .8vw;
       }
     }
     &:after {
       color: #000;
-      border-left: 20px solid;
+      border-left: 40px solid;
       border-top: 40px solid transparent;
-      border-bottom: 45px solid transparent;
+      border-bottom: 40px solid transparent;
       display: none;
+      z-index: -99;
       @mixin atMedium {
+        border-left: 39px solid;
+        border-top: 40px solid transparent;
+        border-bottom: 39px solid transparent;
+        display: inline-block;
         content: '';
         position: absolute;
-        right: -20px;
-        top: 0;
-        height: 3px;
-        display: inline-block;
-        border-top: 30px solid transparent;
-        border-bottom: 30px solid transparent;
+        right: -38px;
+        top: 0
       }
+      @mixin atLarge {
+        border-left: 50px solid;
+        border-top: 47px solid transparent;
+        border-bottom: 46px solid transparent;
+        right: -50px;
+      }
+      /* color: #4D81BF;
+  border-left: 20px solid;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -20px;
+  top:0 */
     }
   }
   &__picture {
@@ -108,7 +125,7 @@
 }
 
 .rotate {
-  animation: rotate 130ms ease-in-out 5;
+  animation: rotate 170ms ease-out 4;
 }
 
 @keyframes rotate {

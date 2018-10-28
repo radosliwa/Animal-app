@@ -7,10 +7,10 @@ import * as Choices from './Choices';
 
 export default class Animalia{
 
-  constructor(animalGallery, animalNames){
+  constructor(animalGallery, animalNames, number){
     this.animalNames = animalNames;
     this.animalGallery = animalGallery;
-
+    
     Values.$startButton.fadeTo('slow', 1);
     this.events();
   }

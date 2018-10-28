@@ -1,5 +1,8 @@
 body {
   font-family: 'Amaranth', sans-serif;
+  font-size: responsive;
+  min-font-size: 20px;
+  max-font-size: 30px;
 }
 
 img {
@@ -23,7 +26,7 @@ img {
   height: 200vh;
   overflow: hidden;
   @mixin atMedium {
-    background: url('../../assets/images/background.jpg') repeat center;
+    background: url('../../assets/images/background.jpg') top center;
   }
 }
 
@@ -31,7 +34,6 @@ img {
   width: 20%;
   text-align: center;
   padding: 1rem 1.5rem;
-  font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
   border: 2px solid black;

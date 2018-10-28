@@ -7,4 +7,14 @@ var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/anim
 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 
 
-console.log(animalia.showAnimal);
+// var person =(function(){
+//   var name = "Radek";
+//   function giveName(){
+//     alert(name);
+//   };
+//   return{
+//     giveName: giveName
+//   }
+// })();
+// console.log(person.giveName());
+// // person.name = 'Tomek';

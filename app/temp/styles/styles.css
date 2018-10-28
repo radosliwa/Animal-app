@@ -343,6 +343,21 @@ template {
 
 body {
   font-family: 'Amaranth', sans-serif;
+  font-size: calc(20px + 10 * ((100vw - 420px) / 860));
+}
+
+@media screen and (min-width: 1280px) {
+
+  body {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+
+  body {
+    font-size: 20px;
+  }
 }
 
 img {
@@ -367,10 +382,10 @@ img {
   overflow: hidden;
 }
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .wrapper {
-    background: url('../../assets/images/background.jpg') repeat center
+    background: url('../../assets/images/background.jpg') top center
 }
   }
 
@@ -378,7 +393,6 @@ img {
   width: 20%;
   text-align: center;
   padding: 1rem 1.5rem;
-  font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
   border: 2px solid black;
@@ -448,14 +462,21 @@ img {
 .gamearea {
   display: none;
   /* will be changed by fadeTo()*/
-  margin-top: 20%;
+  margin-top: 6%;
   z-index: 99;
 }
 
-@media(min-width: 976px) {
+@media(min-width: 450px) {
 
 .gamearea {
-    margin-top: 5%
+    margin-top: 10%
+}
+  }
+
+@media(min-width: 1080px) {
+
+.gamearea {
+    margin-top: 6%
 }
   }
 
@@ -478,24 +499,22 @@ img {
       margin: 0 auto;
     }
 
-@media(min-width: 772px) {
+@media(min-width: 450px) {
 
 .gamearea__columns>div {
         display: inline-block;
-        margin: 0 16px
+        margin: 0 4vw
     }
   }
 
-@media(min-width: 976px) {
+@media(min-width: 768px) {
+  }
 
-.gamearea__columns>div {
-        margin: 0 1.5%
-    }
+@media(min-width: 976px) {
   }
 
 .gamearea__pointer {
     color: #FFF;
-    font-size: 17px;
   }
 
 .gamearea__pointer.bounceInLeft, .gamearea__pointer.rotate {
@@ -509,7 +528,7 @@ img {
      and was moving to the
     left of the screen right after removing bounceInLeft */
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .gamearea__pointer {
       position: relative;
@@ -520,37 +539,57 @@ img {
 
 .gamearea__pointer--p {
       /*  */
-      font-size: 20px;
+      position: relative;
       padding: 0 2px;
+      z-index: 99;
     }
 
 @media(min-width: 450px) {
 
 .gamearea__pointer--p {
-        line-height: normal;
-        padding: 0 8px
+        padding: 0 .8vw
     }
   }
 
 .gamearea__pointer:after {
       color: #000;
-      border-left: 20px solid;
+      border-left: 40px solid;
       border-top: 40px solid transparent;
-      border-bottom: 45px solid transparent;
+      border-bottom: 40px solid transparent;
       display: none;
+      z-index: -99;
+      /* color: #4D81BF;
+  border-left: 20px solid;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -20px;
+  top:0 */
     }
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .gamearea__pointer:after {
+        border-left: 39px solid;
+        border-top: 40px solid transparent;
+        border-bottom: 39px solid transparent;
+        display: inline-block;
         content: '';
         position: absolute;
-        right: -20px;
-        top: 0;
-        height: 3px;
-        display: inline-block;
-        border-top: 30px solid transparent;
-        border-bottom: 30px solid transparent
+        right: -38px;
+        top: 0
+    }
+  }
+
+@media(min-width: 976px) {
+
+.gamearea__pointer:after {
+        border-left: 50px solid;
+        border-top: 47px solid transparent;
+        border-bottom: 46px solid transparent;
+        right: -50px
     }
   }
 
@@ -564,7 +603,7 @@ img {
     background-color: #D8D79F;
   }
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .gamearea__picture {
       width: 160px;
@@ -575,8 +614,8 @@ img {
   }
 
 .rotate {
-  -webkit-animation: rotate 130ms ease-in-out 5;
-          animation: rotate 130ms ease-in-out 5;
+  -webkit-animation: rotate 170ms ease-out 4;
+          animation: rotate 170ms ease-out 4;
 }
 
 @-webkit-keyframes rotate {
@@ -628,36 +667,83 @@ img {
 /*----------------------------GAME BOARD*/
 
 .board {
-  position: relative;
+  position: absolute;
+  /* so that the board doesnt move
+  when message bounces in*/
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
   background-color: #D8D79F;
-  /* width: 70%; */
-  height: 40%;
-  margin: 1% auto 0 auto;
+  width: 85vw;
+  height: 50vh;
   border-radius: 10%;
   overflow: hidden;
-  font-size: 23px;
-  top: 30px;
   color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 68vh;
   display: flex;
   flex-flow: row wrap;
   cursor: none;
 }
+
+@media only screen and (max-height: 600px) {
+
+.board {
+    width: 90vw;
+    top: 75vh
+}
+  }
+
+@media(min-width: 400px) {
+
+.board {
+    top: 65vh
+}
+  }
+
+/*FOR IPHONE X and I XS*/
+
+@media only screen and (width: 375px) and (min-height:740px) and (max-height: 812px) {
+
+.board {
+    top: 61vh
+}
+  }
 
 @media(min-width: 450px) {
 
 .board {
     /* width: 50%;
     height: 40%; */
-    width: 95%
+    width: 85vw;
+    top: 60vh
 }
   }
 
-@media(min-width: 772px) {
+@media(min-width: 600px) {
 
 .board {
+    top: 62vh
+}
+  }
+
+@media(min-width: 768px) {
+
+.board {
+    top: 67vh;
     width: 75%
+}
+  }
+
+/*FOR 800x1280 tablet*/
+
+@media only screen and (width: 800px) and (min-height:1200px) and (max-height: 1280px) {
+
+.board {
+    top: 55vh
 }
   }
 
@@ -667,8 +753,25 @@ img {
 @media(min-width: 1080px) {
 
 .board {
-    width: 45%;
-    height: 50%
+    width: 35%;
+    top: 30vh
+}
+  }
+
+@media only screen and (orientation: landscape) {
+
+.board {
+    top: 100vh;
+    width: 70%;
+    height: 30%
+}
+  }
+
+@media only screen and (orientation: landscape) and (min-width: 1024px) {
+
+.board {
+    top: 80vh;
+    width: 45%
 }
   }
 
@@ -681,32 +784,24 @@ img {
 @media(min-width: 450px) {
   }
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .board>div {
-      flex: 25%;
-      font-size: 1em
+      flex: 25%
   }
   }
 
 @media(min-width: 976px) {
-
-.board>div {
-      font-size: 1.15em
-  }
   }
 
 @media(min-width: 1080px) {
-
-.board>div {
-      font-size: 1.25em
-  }
   }
 
 .cell {
   margin: auto;
   border: white 1px solid;
-  height: 80px;
+  height: 25%;
+  width: 25%;
   display: inline-block;
   text-align: center;
   /*transition: all .5s ease-in-out;*/
@@ -717,17 +812,20 @@ img {
           transform-style: preserve-3d;
 }
 
+@media(min-width: 450px) {
+  }
+
 @media(min-width: 976px) {
 
 .cell {
-    height: 85px
+    /* height: 85px; */
 }
   }
 
 @media(min-width: 1080px) {
 
 .cell {
-    height: 100px
+    /* height: 100px; */
 }
   }
 
@@ -748,13 +846,19 @@ img {
   background: #000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/*flex to make animal names always appear in the center
+  of the cell*/
 
 .front:hover {
     cursor: pointer;
   }
 
-@media(min-width: 772px) {
+@media(min-width: 768px) {
 
 .front:hover {
       background-color: rgba(229, 229, 229)
@@ -769,6 +873,8 @@ img {
       cursor: none;
       background: #000;
     }
+
+.front__animalName {}
 
 .back {
   width: 100%;
@@ -785,11 +891,50 @@ img {
 }
 
 .message {
-  font-size: 25px;
-  display: none;
+  margin: 8% 0 2% 0;
+  /* display: none; */
   text-align: center;
   z-index: 99;
+  font-size: calc(22px + 12 * ((100vw - 420px) / 860));
 }
+
+@media screen and (min-width: 1280px) {
+
+  .message {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+
+  .message {
+    font-size: 22px;
+  }
+}
+
+@media(min-width: 400px) {
+
+.message {
+    /* margin: 5% 0 7% 0; */
+}
+  }
+
+@media(min-width: 450px) {
+  }
+
+@media(min-width: 1080px) {
+
+.message {
+    margin: 4% 0 4% 0
+}
+  }
+
+@media only screen and (orientation: landscape) {
+
+.message {
+    margin: 4% 0 4% 0
+}
+  }
 
 .finalMessage {
   display: none;
