@@ -2,6 +2,8 @@
 @import 'base/_mixins';
 @import "base/_global";
 @import "modules/_site-header";
+@import "modules/_wrapper";
 @import "modules/_gameArea";
 @import "modules/_gameBoard";
+@import "modules/_messages";
 @import "modules/_site-footer";

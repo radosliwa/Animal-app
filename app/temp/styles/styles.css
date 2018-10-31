@@ -341,6 +341,12 @@ template {
   display: none;
 }
 
+/*----------------------------------ULTRASMALL*/
+
+/*----------------------------------SMALL*/
+
+/*----------------------------------SMALLXL*/
+
 body {
   font-family: 'Amaranth', sans-serif;
   font-size: calc(20px + 10 * ((100vw - 420px) / 860));
@@ -439,6 +445,8 @@ img {
 
   }
 
+.wrapper {}
+
 /*---------------GAME*/
 
 #start {
@@ -462,18 +470,18 @@ img {
 .gamearea {
   display: none;
   /* will be changed by fadeTo()*/
-  margin-top: 6%;
   z-index: 99;
+  margin-top: 1%;
 }
 
-@media(min-width: 450px) {
+@media(min-width: 400px) {
 
 .gamearea {
-    margin-top: 10%
+    margin-top: 2%
 }
   }
 
-@media(min-width: 1080px) {
+@media(min-width: 450px) {
 
 .gamearea {
     margin-top: 6%
@@ -537,18 +545,36 @@ img {
   }
   }
 
-.gamearea__pointer--p {
-      /*  */
+.gamearea__pointer--text {
       position: relative;
       padding: 0 2px;
       z-index: 99;
+      text-shadow: 0px 1.8px 1px #000;
+      font-size: calc(25px + 9 * ((100vw - 420px) / 860));
     }
+
+@media screen and (min-width: 1280px) {
+
+  .gamearea__pointer--text {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+
+  .gamearea__pointer--text {
+    font-size: 25px;
+  }
+}
 
 @media(min-width: 450px) {
 
-.gamearea__pointer--p {
+.gamearea__pointer--text {
         padding: 0 .8vw
     }
+  }
+
+@media(min-width: 768px) {
   }
 
 .gamearea__pointer:after {
@@ -558,15 +584,6 @@ img {
       border-bottom: 40px solid transparent;
       display: none;
       z-index: -99;
-      /* color: #4D81BF;
-  border-left: 20px solid;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  display: inline-block;
-  content: '';
-  position: absolute;
-  right: -20px;
-  top:0 */
     }
 
 @media(min-width: 768px) {
@@ -683,95 +700,51 @@ img {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  top: 68vh;
+  top: 69vh;
   display: flex;
   flex-flow: row wrap;
   cursor: none;
 }
 
-@media only screen and (max-height: 600px) {
-
-.board {
-    width: 90vw;
-    top: 75vh
-}
-  }
-
 @media(min-width: 400px) {
 
 .board {
-    top: 65vh
-}
-  }
-
-/*FOR IPHONE X and I XS*/
-
-@media only screen and (width: 375px) and (min-height:740px) and (max-height: 812px) {
-
-.board {
-    top: 61vh
+    top: 64vh;
+    height: 40vh
 }
   }
 
 @media(min-width: 450px) {
 
 .board {
-    /* width: 50%;
-    height: 40%; */
-    width: 85vw;
-    top: 60vh
+    top: 55vh;
+    width: 90vw
+}
+  }
+
+@media (min-height: 320px) and (max-height: 400px) and (min-width: 450px) {
+
+.board {
+    top: 110vh;
+    height: 80vh;
+    width: 95vw
 }
   }
 
 @media(min-width: 600px) {
 
 .board {
-    top: 62vh
+    top: 55vh;
+    width: 85vw
 }
   }
 
-@media(min-width: 768px) {
+@media (max-height: 500px) and (min-width: 600px) {
 
 .board {
-    top: 67vh;
-    width: 75%
-}
-  }
-
-/*FOR 800x1280 tablet*/
-
-@media only screen and (width: 800px) and (min-height:1200px) and (max-height: 1280px) {
-
-.board {
-    top: 55vh
-}
-  }
-
-@media(min-width: 976px) {
-  }
-
-@media(min-width: 1080px) {
-
-.board {
-    width: 35%;
-    top: 30vh
-}
-  }
-
-@media only screen and (orientation: landscape) {
-
-.board {
-    top: 100vh;
-    width: 70%;
-    height: 30%
-}
-  }
-
-@media only screen and (orientation: landscape) and (min-width: 1024px) {
-
-.board {
-    top: 80vh;
-    width: 45%
+    top: 90vh;
+    height: 70vh;
+    width: 80vw
 }
   }
 
@@ -891,11 +864,11 @@ img {
 }
 
 .message {
-  margin: 8% 0 2% 0;
   /* display: none; */
   text-align: center;
   z-index: 99;
   font-size: calc(22px + 12 * ((100vw - 420px) / 860));
+  margin: 5.5% 0 2% 0;
 }
 
 @media screen and (min-width: 1280px) {
@@ -912,27 +885,17 @@ img {
   }
 }
 
-@media(min-width: 400px) {
+@media (min-height: 320px) and (max-height: 400px) and (min-width: 450px) {
 
 .message {
-    /* margin: 5% 0 7% 0; */
+    margin: 3.5% 0 2% 0
 }
   }
 
-@media(min-width: 450px) {
-  }
-
-@media(min-width: 1080px) {
+@media (max-height: 500px) and (min-width: 600px) {
 
 .message {
-    margin: 4% 0 4% 0
-}
-  }
-
-@media only screen and (orientation: landscape) {
-
-.message {
-    margin: 4% 0 4% 0
+    margin-top: 6.5%
 }
   }
 
