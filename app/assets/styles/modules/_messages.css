@@ -6,11 +6,26 @@
   min-font-size: 22px;
   max-font-size: 34px;
   margin: 5.5% 0 2% 0;
+  @mixin heightBigger650 {
+    margin-top: 4.5%;
+  }
+  @mixin atUltraSmall {
+    margin-top: 4%;
+  }
+  @mixin atSmall {
+    margin-top: 2.5%;
+  }
   @mixin atS-LANDSCAPE {
-    margin: 3.5% 0 2% 0;
+    margin-top: 5.5%;
+  }
+  @mixin atSmallXL {
+    margin-top: 3.5%;
   }
   @mixin atSXL-LANDSCAPE {
-    margin-top: 6.5%;
+    margin-top: 3%;
+  }
+  @mixin atMedium {
+    margin-top: 5%;
   }
 }
 
