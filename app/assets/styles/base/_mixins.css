@@ -12,6 +12,12 @@
   }
 }
 
+@define-mixin atUltraS-LANDSCAPE {
+  @media (min-height: 190px) and (max-height: 580px) and (min-width: 400px) {
+    @mixin-content;
+  }
+}
+
 /*----------------------------------SMALL*/
 
 @define-mixin atSmall {
@@ -21,7 +27,7 @@
 }
 
 @define-mixin atS-LANDSCAPE {
-  @media (min-height: 290px) and (max-height: 450px) and (min-width: 450px) {
+  @media (min-height: 190px) and (max-height: 611px) and (min-width: 450px) and(max-width: 599px) {
     @mixin-content;
   }
 }
@@ -47,7 +53,7 @@
 }
 
 @define-mixin atSXL-LANDSCAPE-BiggerHeight {
-  @media (min-height: 401px) and (max-height: 700px) and (min-width: 600px) and (max-width: 767px) {
+  @media (min-height: 401px) and (max-height: 600px) and (min-width: 600px) and (max-width: 767px) {
     @mixin-content;
   }
 }
@@ -61,7 +67,13 @@
 }
 
 @define-mixin atM-LANDSCAPE {
-  @media (max-height: 800px) and (min-width: 768px) {
+  @media (max-height: 490px) and (min-width: 768px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin atM-LANDSCAPE-BiggerHeight {
+  @media (min-height: 491px) and (max-height: 700px) and (min-width: 768px) and (max-width: 976px) {
     @mixin-content;
   }
 }

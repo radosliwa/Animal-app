@@ -1,0 +1,57 @@
+.board {
+  @mixin atUltraSmall {}
+  @mixin atUltraS-LANDSCAPE {
+    top: 84vh;
+  }
+  @mixin atSmall {
+    top: 57vh;
+    width: 90vw;
+  }
+  @mixin atS-LANDSCAPE {
+    top: 108vh;
+    height: 80vh;
+    width: 77vw;
+  }
+  @mixin atS-LANDSCAPE-BiggerHeight {
+    top: 81vh;
+    height: 67vh;
+  }
+  @mixin atSmallXL {
+    top: 57vh;
+    width: 85vw;
+  }
+  @mixin atSXL-LANDSCAPE {
+    top: 109vh;
+    height: 73vh;
+    width: 75vw;
+  }
+  @mixin atSXL-LANDSCAPE-BiggerHeight {
+    top: 92vh;
+    height: 73vh;
+    width: 75vw;
+  }
+  @mixin atMedium {
+    top: 65vh;
+    width: 68vw;
+  }
+  @mixin atM-LANDSCAPE {
+    top: 126vh;
+    height: 93vh;
+  }
+  @mixin atM-LANDSCAPE-BiggerHeight {
+    top: 91vh;
+    height: 76vh;
+  }
+  @mixin atLarge {
+    top: 53vh;
+    width: 60vw;
+    height: 45vh;
+  }
+  @mixin atSuperLarge {
+    top: 76vh;
+    width: 50vw;
+    height: 50vh;
+  }
+}
+
+/* @media (min-height:330px) and (max-height:450px) */

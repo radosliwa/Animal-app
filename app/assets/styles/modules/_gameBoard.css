@@ -7,64 +7,16 @@
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
   background-color: #D8D79F;
-  width: 90vw;
-  height: 50vh;
   border-radius: 10%;
   overflow: hidden;
   color: white;
   @mixin centerVerHor;
   top: 68vh;
+  width: 90vw;
+  height: 50vh;
   display: flex;
   flex-flow: row wrap;
   cursor: none;
-  @media (max-width: 399px) and (max-height: 319px) {
-    top: 100vh;
-  }
-  @mixin atUltraSmall {}
-  @mixin atSmall {
-    top: 57vh;
-    width: 90vw;
-  }
-  @mixin atS-LANDSCAPE {
-    top: 105vh;
-    height: 80vh;
-    width: 95vw;
-  }
-  @mixin atS-LANDSCAPE-BiggerHeight {
-    top: 81vh;
-    height: 67vh;
-  }
-  @mixin atSmallXL {
-    top: 55vh;
-    width: 85vw;
-  }
-  @mixin atSXL-LANDSCAPE {
-    top: 109vh;
-    height: 73vh;
-    width: 75vw;
-  }
-  @mixin atSXL-LANDSCAPE-BiggerHeight {
-    top: 89vh;
-    height: 73vh;
-    width: 75vw;
-  }
-  @mixin atMedium {
-    top: 57vh;
-    width: 68vw;
-  }
-  @mixin atM-LANDSCAPE {
-    top: 116vh;
-  }
-  @mixin atLarge {
-    top: 53vh;
-    width: 60vw;
-    height: 45vh;
-  }
-  @mixin atSuperLarge {
-    top: 86vh;
-    width: 64vw;
-    height: 59vh;
-  }
   /* @media (min-height:330px) and (max-height:450px) */
   /*-------------------CELLS*/
   &>div {
