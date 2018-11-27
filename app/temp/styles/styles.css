@@ -475,54 +475,10 @@ img {
   display: none;
   /* will be changed by fadeTo()*/
   z-index: 99;
-  margin-top: 1%;
 }
-
-@media(min-width: 400px) {
-
-.gamearea {
-    margin-top: 2%
-}
-  }
-
-@media(min-width: 450px) {
-
-.gamearea {
-    margin-top: 6%
-}
-  }
 
 .gamearea__visible {
     opacity: 1;
-  }
-
-@media(min-width: 450px) {
-
-.gamearea__columns {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row
-  }
-  }
-
-.gamearea__columns>div {
-      display: block;
-      margin: 0 auto;
-    }
-
-@media(min-width: 450px) {
-
-.gamearea__columns>div {
-        display: inline-block;
-        margin: 0 4vw
-    }
-  }
-
-@media(min-width: 768px) {
-  }
-
-@media(min-width: 976px) {
   }
 
 .gamearea__pointer {
@@ -628,18 +584,22 @@ img {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg)
   }
+
   25% {
     -webkit-transform: rotate(90deg);
             transform: rotate(90deg)
   }
+
   50% {
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg)
   }
+
   75% {
     -webkit-transform: rotate(270deg);
             transform: rotate(270deg)
   }
+
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg)
@@ -651,18 +611,22 @@ img {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg)
   }
+
   25% {
     -webkit-transform: rotate(90deg);
             transform: rotate(90deg)
   }
+
   50% {
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg)
   }
+
   75% {
     -webkit-transform: rotate(270deg);
             transform: rotate(270deg)
   }
+
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg)
@@ -672,9 +636,6 @@ img {
 /*----------------------------GAME BOARD*/
 
 .board {
-  position: absolute;
-  /* so that the board doesnt move
-  when message bounces in*/
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
   background-color: #D8D79F;
@@ -692,6 +653,7 @@ img {
   display: flex;
   flex-flow: row wrap;
   cursor: none;
+
   /* @media (min-height:330px) and (max-height:450px) */
 }
 
@@ -834,7 +796,6 @@ img {
   text-align: center;
   z-index: 99;
   font-size: calc(22px + 12 * ((100vw - 420px) / 860));
-  margin: 5.5% 0 2% 0;
 }
 
 @media screen and (min-width: 1280px) {
@@ -850,55 +811,6 @@ img {
     font-size: 22px;
   }
 }
-
-@media(min-height: 650px) and (max-height: 830px) {
-
-.message {
-    margin-top: 4.5%
-}
-  }
-
-@media(min-width: 400px) {
-
-.message {
-    margin-top: 4%
-}
-  }
-
-@media(min-width: 450px) {
-
-.message {
-    margin-top: 2.5%
-}
-  }
-
-@media (min-height: 190px) and (max-height: 611px) and (min-width: 450px) and(max-width: 599px) {
-
-.message {
-    margin-top: 5.5%
-}
-  }
-
-@media(min-width: 600px) {
-
-.message {
-    margin-top: 3.5%
-}
-  }
-
-@media (max-height: 400px) and (min-width: 600px) {
-
-.message {
-    margin-top: 3%
-}
-  }
-
-@media(min-width: 768px) {
-
-.message {
-    margin-top: 3%
-}
-  }
 
 .finalMessage {
   display: none;
@@ -925,6 +837,53 @@ img {
   padding: .5rem 18px .5rem 18px;
   text-align: center;
 }
+
+.gamearea {
+  margin-top: 1%;
+}
+
+@media(min-width: 400px) {
+
+.gamearea {
+    margin-top: 2%
+}
+  }
+
+@media(min-width: 450px) {
+
+.gamearea {
+    margin-top: 6%
+}
+  }
+
+@media(min-width: 450px) {
+
+.gamearea__columns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row
+  }
+  }
+
+.gamearea__columns>div {
+      display: block;
+      margin: 0 auto;
+    }
+
+@media(min-width: 450px) {
+
+.gamearea__columns>div {
+        display: inline-block;
+        margin: 0 4vw
+    }
+  }
+
+@media(min-width: 768px) {
+  }
+
+@media(min-width: 976px) {
+  }
 
 @media(min-width: 400px) {
   }
@@ -1026,6 +985,59 @@ img {
     top: 76vh;
     width: 50vw;
     height: 50vh
+}
+  }
+
+.message {
+  margin: 5.5% 0 2% 0;
+}
+
+@media(min-height: 650px) and (max-height: 830px) {
+
+.message {
+    margin-top: 4.5%
+}
+  }
+
+@media(min-width: 400px) {
+
+.message {
+    margin-top: 4%
+}
+  }
+
+@media(min-width: 450px) {
+
+.message {
+    margin-top: 2.5%
+}
+  }
+
+@media (min-height: 190px) and (max-height: 611px) and (min-width: 450px) and(max-width: 599px) {
+
+.message {
+    margin-top: 5.5%
+}
+  }
+
+@media(min-width: 600px) {
+
+.message {
+    margin-top: 3.5%
+}
+  }
+
+@media (max-height: 400px) and (min-width: 600px) {
+
+.message {
+    margin-top: 3%
+}
+  }
+
+@media(min-width: 768px) {
+
+.message {
+    margin-top: 3%
 }
   }
 

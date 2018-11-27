@@ -1,9 +1,5 @@
 /*----------------------------GAME BOARD*/
-
 .board {
-  position: absolute;
-  /* so that the board doesnt move
-  when message bounces in*/
   border: 6px solid rgba(255, 255, 255, .3);
   box-shadow: 0px 5px 10px 3px #000;
   background-color: #D8D79F;
@@ -17,15 +13,20 @@
   display: flex;
   flex-flow: row wrap;
   cursor: none;
+
   /* @media (min-height:330px) and (max-height:450px) */
   /*-------------------CELLS*/
   &>div {
     flex: 25%;
+
     @mixin atSmall {}
+
     @mixin atMedium {
       flex: 25%;
     }
+
     @mixin atLarge {}
+
     @mixin atSuperLarge {}
   }
 }
@@ -40,16 +41,21 @@
   /*transition: all .5s ease-in-out;*/
   transition: transform .7s linear;
   transform-style: preserve-3d;
+
   @mixin atSmall {}
+
   @mixin atLarge {
     /* height: 85px; */
   }
+
   @mixin atSuperLarge {
     /* height: 100px; */
   }
+
   &__flipped {
     transform: rotateY(-180deg);
   }
+
   &--avoidClicks {
     pointer-events: none;
   }
@@ -65,23 +71,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   /*flex to make animal names always appear in the center
   of the cell*/
   &:hover {
     cursor: pointer;
+
     @mixin atMedium {
       background-color: rgba(229, 229, 229);
     }
   }
+
   &:active {
     color: orange;
   }
+
   &__non-hover {
     &:hover {
       cursor: none;
       background: #000;
     }
   }
+
   p {
     @mixin atMedium {
       font-size: responsive;
