@@ -8,32 +8,14 @@
   @mixin atSmall {
     margin-top: 6%;
   }
-
-  &__columns {
-    @mixin atSmall {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row;
-    }
-
-    &>div {
-      display: block;
-      margin: 0 auto;
-
-      @mixin atSmall {
-        display: inline-block;
-        margin: 0 4vw;
-      }
-
-      @mixin atMedium {}
-
-      @mixin atLarge {}
-    }
-  }
 }
 
 .board {
+  @mixin centerVerHor;
+  top: 68vh;
+  width: 90vw;
+  height: 50vh;
+
   @mixin atUltraSmall {}
 
   @mixin atUltraS-LANDSCAPE {

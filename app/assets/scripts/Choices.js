@@ -19,8 +19,8 @@ const rightChoice = (cb) =>{
 const wrongChoice = ()=>{
   $('.cell').addClass('cell--avoidClicks');
   $('.front').addClass('front__non-hover');
-  Values.$message.addClass('animated bounceInLeft').show().text('wrong, try again!').delay(1200).hide(100)
-  .on('animationend',function(){
+  Values.$message.addClass('animated bounceInLeft').text('wrong, try again!')
+  .one('animationend',function(){
     $(this).removeClass('animated bounceInLeft');
     $('.front').removeClass('front__non-hover');
     $('.cell').removeClass('cell--avoidClicks');
@@ -33,7 +33,7 @@ const gameEnds = ()=>{
   Values.$gameArea.fadeOut(400);
   Values.$gameArrow.fadeOut(400);
   setTimeout(function(){
-  Values.$finalMessage.css({display:"block"}).addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function(){
+  Values.$finalMessage.addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function(){
       location.reload();//from server, not cache
     });
   }, 1000);

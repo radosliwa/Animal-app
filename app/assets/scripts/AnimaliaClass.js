@@ -10,7 +10,7 @@ export default class Animalia{
   constructor(animalGallery, animalNames, number){
     this.animalNames = animalNames;
     this.animalGallery = animalGallery;
-    
+
     Values.$startButton.fadeTo('slow', 1);
     this.events();
   }
@@ -42,7 +42,7 @@ export default class Animalia{
     they dont exist until createRandomBoard*/
     this.cellFront = $('.front');
     Values.$startButton.hide();
-    Values.$gameArea.fadeTo('fast', 1);
+    Values.$gameArea.addClass('gamearea__visible');
     this.getUserChoice();
   }
 

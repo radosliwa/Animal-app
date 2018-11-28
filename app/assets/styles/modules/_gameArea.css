@@ -7,6 +7,24 @@
   top: 20%;
   background-color: #D8D79F;
   display: none;
+  z-index: 99;
+  width: 35%;
+  animation: all .5s ease-out;
+
+  @mixin atSmallXL {
+    width: 25%;
+  }
+
+  &:hover {
+    border: 2px solid rgba(255, 255, 255, .3);
+    box-shadow: 0px 2px 8px #000;
+    border-radius: 0;
+  }
+
+  &:active {
+    box-shadow: 0px 0px 3px #000;
+    color: #f7f1f1;
+  }
 
   /* will be changed by fadeTo()*/
   &__visible {
@@ -16,12 +34,46 @@
 
 /*----------------------------GAME BEGINS*/
 .gamearea {
-  display: none;
+  opacity: 0;
   /* will be changed by fadeTo()*/
-  z-index: 99;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  transition: opacity .5s linear;
+
+  &>div {}
 
   &__visible {
     opacity: 1;
+    z-index: 99;
+  }
+
+  &__columns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @mixin atSmall {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &>div {
+      display: block;
+
+      @mixin atSmall {
+        display: inline-block;
+        margin: 0 4vw;
+      }
+
+      @mixin atMedium {}
+
+      @mixin atLarge {}
+    }
   }
 
   &__pointer {
