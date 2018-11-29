@@ -10577,6 +10577,7 @@ var Animalia = function () {
         /* one turns off click for clicked
         element, off('click') in Choices does that for the rest of the cells */
         userChoice = $(this).children().text();
+        console.log(e);
         e.stopImmediatePropagation();
 
         //-------------------------------------------IS CHOICE RIGHT OR WRONG
@@ -10586,10 +10587,12 @@ var Animalia = function () {
           $(this).addClass('cell__flipped');
 
           Choices.rightChoice(function () {
+
             setTimeout(function () {
+              console.log(that);
               Values.$gameArrow.removeClass('rotate');
               Values.$gameArrow.addClass('animated bounceInLeft');
-              that.cellFront.removeClass('front__non-hover').attr('style', "");
+              $('.front').removeClass('front__non-hover');
               Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
               that.getNextChoice();
             }, 600);
@@ -10654,11 +10657,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var $ = __webpack_require__(0);
 
 
+var $cell = $('.cell');
+
 var rightChoice = function rightChoice(cb) {
-  $('.cell').off('click');
+  $cell.off('click');
   $('.front').addClass('front__non-hover');
   Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
-  Values.$message.addClass('animated bounceInLeft').show().text('good job!').delay(1300) //needed first delay to keep message still for a sec
+  Values.$message.addClass('message--is-visible animated bounceInLeft').show().text('good job!').delay(1300) //needed first delay to keep message still for a sec
   .one('animationend', function () {
     Values.$message.addClass('animated bounceOutUp');
     Values.$animalShowing.fadeOut(650);
@@ -10667,12 +10672,12 @@ var rightChoice = function rightChoice(cb) {
 };
 
 var wrongChoice = function wrongChoice() {
-  $('.cell').addClass('cell--avoidClicks');
+  $cell.addClass('cell--avoidClicks');
   $('.front').addClass('front__non-hover');
-  Values.$message.addClass('animated bounceInLeft').text('wrong, try again!').one('animationend', function () {
+  Values.$message.addClass('message--is-visible animated bounceInLeft').text('wrong, try again!').one('animationend', function () {
     $(this).removeClass('animated bounceInLeft');
     $('.front').removeClass('front__non-hover');
-    $('.cell').removeClass('cell--avoidClicks');
+    $cell.removeClass('cell--avoidClicks');
   });
 };
 

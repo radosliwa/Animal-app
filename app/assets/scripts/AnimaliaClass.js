@@ -55,7 +55,9 @@ export default class Animalia{
       /* one turns off click for clicked
       element, off('click') in Choices does that for the rest of the cells */
       userChoice = $(this).children().text();
+      console.log(e);
       e.stopImmediatePropagation();
+
 
       //-------------------------------------------IS CHOICE RIGHT OR WRONG
 
@@ -64,10 +66,12 @@ export default class Animalia{
         $(this).addClass('cell__flipped');
 
         Choices.rightChoice(function(){
+
           setTimeout(()=>{
+            console.log(that);
               Values.$gameArrow.removeClass('rotate');
             Values.$gameArrow.addClass('animated bounceInLeft');
-            that.cellFront.removeClass('front__non-hover').attr('style', "");
+            $('.front').removeClass('front__non-hover');
             Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
             that.getNextChoice();
           }, 600);

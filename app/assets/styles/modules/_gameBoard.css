@@ -47,17 +47,8 @@
   transition: transform .7s linear;
   transform-style: preserve-3d;
 
-  @mixin atSmall {}
-
-  @mixin atLarge {
-    /* height: 85px; */
-  }
-
-  @mixin atSuperLarge {
-    /* height: 100px; */
-  }
-
   &__flipped {
+    cursor: pointer;
     transform: rotateY(-180deg);
   }
 
@@ -95,6 +86,10 @@
     &:hover {
       cursor: none;
       background: #000;
+    }
+
+    &:active {
+      color: #FFF;
     }
   }
 
