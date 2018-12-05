@@ -11,6 +11,7 @@
   display: flex;
   flex-flow: row wrap;
   cursor: none;
+  transition: all 1s linear;
 
   @mixin atMedium {
     width: 60vw;
@@ -19,6 +20,12 @@
   @mixin atSuperLarge {
     width: 40vw;
   }
+
+  @media (max-height:550px) {
+    height: 80vh;
+  }
+
+  ;
 
   /*-------------------CELLS*/
   &>div {
@@ -80,6 +87,7 @@
 
   &:active {
     color: orange;
+    background-color: rgba(229, 229, 229);
   }
 
   &__non-hover {

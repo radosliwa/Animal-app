@@ -18,3 +18,15 @@ var animalia = new Animalia(['assets/images/animal-dog.jpg', 'assets/images/anim
 // })();
 // console.log(person.giveName());
 // // person.name = 'Tomek';
+
+
+// $('.box3').on('click', function(e){
+//
+// })
+// $('.box2').on('click', function(e){
+//
+// })
+// $('.box1').on('click', function(e){
+//   $(this).children().remove();
+//
+// })

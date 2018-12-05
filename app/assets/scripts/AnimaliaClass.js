@@ -55,13 +55,14 @@ export default class Animalia{
       /* one turns off click for clicked
       element, off('click') in Choices does that for the rest of the cells */
       userChoice = $(this).children().text();
-      console.log(e);
+      console.log(userChoice);
+      console.log(that.animalGallery[Values.index]);
       e.stopImmediatePropagation();
 
 
       //-------------------------------------------IS CHOICE RIGHT OR WRONG
 
-      if(that.animalGallery[Values.index].includes(userChoice) && userChoice !==""){
+      if(that.animalGallery[Values.index]=== "assets/images/animal-"+userChoice+".jpg" && userChoice !==""){
         //-------------------------------------------RIGHT CHOICE
         $(this).addClass('cell__flipped');
 

@@ -2,15 +2,16 @@ var $ = require('jquery');
 import * as Values from './Values';
 
 const $cell = $('.cell');
+const $front = $('.front');
 
 const rightChoice = (cb) =>{
   $cell.off('click');
-  $('.front').addClass('front__non-hover');
+  $front.addClass('front__non-hover');
   Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
-  Values.$message.addClass('message--is-visible animated bounceInLeft').show().text('good job!').delay(1300) //needed first delay to keep message still for a sec
+  Values.$message.addClass('message--is-visible animated delay-3s bounceInLeft').text('good job!')
   .one('animationend', function(){
-    Values.$message.addClass('animated bounceOutUp');
-    Values.$animalShowing.fadeOut(650);
+    Values.$message.addClass('bounceOutUp');
+    Values.$animalShowing.fadeOut(700);
     cb();
 
   }); //with on() fadeOut would fire even after a wrong choice due to message animation!
@@ -19,13 +20,12 @@ const rightChoice = (cb) =>{
 
 const wrongChoice = ()=>{
   $cell.addClass('cell--avoidClicks');
-  $('.front').addClass('front__non-hover');
+  $front.addClass('front__non-hover');
   Values.$message.addClass('message--is-visible animated bounceInLeft').text('wrong, try again!')
   .one('animationend',function(){
      $(this).removeClass('animated bounceInLeft');
-    $('.front').removeClass('front__non-hover');
+    $front.removeClass('front__non-hover');
     $cell.removeClass('cell--avoidClicks');
-
   });
 }
 
