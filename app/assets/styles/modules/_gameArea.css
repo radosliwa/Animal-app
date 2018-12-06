@@ -154,7 +154,8 @@
 }
 
 .rotate {
-  animation: rotate 170ms ease-out 4;
+  animation: rotate 150ms ease-out 5;
+  animation-delay: .3s;
 }
 
 @keyframes rotate {

@@ -8,7 +8,7 @@
   color: white;
   width: 90vw;
   height: 50vh;
-  display: flex;
+  display: none;
   flex-flow: row wrap;
   cursor: none;
   transition: all 1s linear;
@@ -24,8 +24,6 @@
   @media (max-height:550px) {
     height: 80vh;
   }
-
-  ;
 
   /*-------------------CELLS*/
   &>div {
@@ -57,10 +55,6 @@
   &__flipped {
     cursor: pointer;
     transform: rotateY(-180deg);
-  }
-
-  &--avoidClicks {
-    pointer-events: none;
   }
 }
 

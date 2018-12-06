@@ -7,5 +7,5 @@ const $message = $('.message');
 const $animalShowing = $('.animal');
 const $finalMessage = $('.finalMessage');
 const $gameArrow = $('.gamearea__pointer');
-
-export {index, $startButton, $gameArea, $message, $animalShowing, $finalMessage, $gameArrow};
+const $cellFront = $('.front');
+export {index, $startButton, $gameArea, $message, $animalShowing, $finalMessage, $cellFront, $gameArrow};

@@ -628,8 +628,10 @@ img {
   }
 
 .rotate {
-  -webkit-animation: rotate 170ms ease-out 4;
-          animation: rotate 170ms ease-out 4;
+  -webkit-animation: rotate 150ms ease-out 5;
+          animation: rotate 150ms ease-out 5;
+  -webkit-animation-delay: .3s;
+          animation-delay: .3s;
 }
 
 @-webkit-keyframes rotate {
@@ -697,7 +699,7 @@ img {
   color: white;
   width: 90vw;
   height: 50vh;
-  display: flex;
+  display: none;
   flex-flow: row wrap;
   cursor: none;
   transition: all 1s linear;
@@ -765,10 +767,6 @@ img {
     cursor: pointer;
     -webkit-transform: rotateY(-180deg);
             transform: rotateY(-180deg);
-  }
-
-.cell--avoidClicks {
-    pointer-events: none;
   }
 
 .front {
@@ -902,6 +900,7 @@ img {
 
 .finalMessage.animated {
     display: flex;
+    top: 5%;
   }
 
 .finalMessage__text {

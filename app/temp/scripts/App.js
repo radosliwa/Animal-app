@@ -10453,13 +10453,14 @@ var $message = $('.message');
 var $animalShowing = $('.animal');
 var $finalMessage = $('.finalMessage');
 var $gameArrow = $('.gamearea__pointer');
-
+var $cellFront = $('.front');
 exports.index = index;
 exports.$startButton = $startButton;
 exports.$gameArea = $gameArea;
 exports.$message = $message;
 exports.$animalShowing = $animalShowing;
 exports.$finalMessage = $finalMessage;
+exports.$cellFront = $cellFront;
 exports.$gameArrow = $gameArrow;
 
 /***/ }),
@@ -10564,7 +10565,8 @@ var Animalia = function () {
       for (var i = 0; i < arr.length; i++) {
         cells += '<div class="cell">\n      <div class="front"><p>' + arrSort[i] + '</p></div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>';
       }
-      $('.board').html(cells);
+      $('.board').css('display', 'flex').html(cells);
+      /*with opacity 0 cursor disappeared below start button due to cursor:none*/
     }
   }, {
     key: 'startGame',
@@ -10598,30 +10600,29 @@ var Animalia = function () {
         if (that.animalGallery[Values.index] === "assets/images/animal-" + userChoice + ".jpg" && userChoice !== "") {
           //-------------------------------------------RIGHT CHOICE
           $(this).addClass('cell__flipped');
-
+          that.cellFront.addClass('front__non-hover');
           Choices.rightChoice(function () {
-
             setTimeout(function () {
               console.log(that);
-              Values.$gameArrow.removeClass('rotate');
-              Values.$gameArrow.addClass('animated bounceInLeft');
-              $('.front').removeClass('front__non-hover');
               Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
+              that.cellFront.removeClass('front__non-hover');
               that.getNextChoice();
-            }, 600);
+            }, 1200);
           });
         } else {
 
           //-------------------------------------------WRONG CHOICE
 
           Choices.wrongChoice();
-          $(this).removeClass('cell--avoidClicks');
+          that.cellToClick.removeClass('cell--avoidClicks');
         }
       });
     }
   }, {
     key: 'getNextChoice',
     value: function getNextChoice() {
+      Values.$gameArrow.removeClass('rotate').addClass('animated bounceInLeft');
+
       this.animalGallery.splice(Values.index, 1); // to avoid repeats
       //--------------------------------------------------------------GAME ENDS
       var galleryLen = this.animalGallery.length;
@@ -10676,10 +10677,10 @@ var $front = $('.front');
 var rightChoice = function rightChoice(cb) {
   $cell.off('click');
   $front.addClass('front__non-hover');
-  Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
-  Values.$message.addClass('message--is-visible animated delay-3s bounceInLeft').text('good job!').one('animationend', function () {
+  Values.$message.addClass('message--is-visible animated bounceInLeft').text('good job!').one('animationend', function () {
+    Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
     Values.$message.addClass('bounceOutUp');
-    Values.$animalShowing.fadeOut(700);
+    Values.$animalShowing.fadeOut(1200);
     cb();
   }); //with on() fadeOut would fire even after a wrong choice due to message animation!
 };
@@ -10695,13 +10696,13 @@ var wrongChoice = function wrongChoice() {
 };
 
 var gameEnds = function gameEnds() {
-  Values.$gameArea.fadeOut(400);
-  Values.$gameArrow.fadeOut(400);
+  Values.$gameArea.fadeOut(200);
+  Values.$gameArrow.fadeOut(200);
   setTimeout(function () {
     Values.$finalMessage.addClass('animated bounceInUp').delay(2000).fadeOut(1500).queue(function () {
       location.reload(); //from server, not cache
     });
-  }, 1000);
+  }, 200);
 };
 
 exports.rightChoice = rightChoice;

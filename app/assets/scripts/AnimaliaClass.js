@@ -33,7 +33,8 @@ export default class Animalia{
       <div class="back"><img src="assets/images/animal-${arrSort[i]}.jpg" alt="${arrSort[i]}"></div>
       </div>`;
     }
-    $('.board').html(cells);
+    $('.board').css('display', 'flex').html(cells);
+    /*with opacity 0 cursor disappeared below start button due to cursor:none*/
 
   }
 
@@ -65,29 +66,28 @@ export default class Animalia{
       if(that.animalGallery[Values.index]=== "assets/images/animal-"+userChoice+".jpg" && userChoice !==""){
         //-------------------------------------------RIGHT CHOICE
         $(this).addClass('cell__flipped');
-
+        that.cellFront.addClass('front__non-hover');
         Choices.rightChoice(function(){
-
           setTimeout(()=>{
             console.log(that);
-              Values.$gameArrow.removeClass('rotate');
-            Values.$gameArrow.addClass('animated bounceInLeft');
-            $('.front').removeClass('front__non-hover');
             Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
+            that.cellFront.removeClass('front__non-hover');
             that.getNextChoice();
-          }, 600);
+          }, 1200);
         });
       } else {
 
         //-------------------------------------------WRONG CHOICE
 
         Choices.wrongChoice();
-        $(this).removeClass('cell--avoidClicks');
+        that.cellToClick.removeClass('cell--avoidClicks');
       }
     });
   }
 
   getNextChoice(){
+    Values.$gameArrow.removeClass('rotate').addClass('animated bounceInLeft');
+
     this.animalGallery.splice(Values.index,1);  // to avoid repeats
     //--------------------------------------------------------------GAME ENDS
     let galleryLen = this.animalGallery.length;
