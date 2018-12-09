@@ -10447,20 +10447,24 @@ Object.defineProperty(exports, "__esModule", {
 var $ = __webpack_require__(0);
 
 var index = void 0;
+var $front = $('.front');
+var $cell = $('.cell');
+
 var $startButton = $('#start');
 var $gameArea = $('.gamearea');
 var $message = $('.message');
 var $animalShowing = $('.animal');
 var $finalMessage = $('.finalMessage');
 var $gameArrow = $('.gamearea__pointer');
-var $cellFront = $('.front');
+
 exports.index = index;
+exports.$cell = $cell;
 exports.$startButton = $startButton;
 exports.$gameArea = $gameArea;
 exports.$message = $message;
 exports.$animalShowing = $animalShowing;
 exports.$finalMessage = $finalMessage;
-exports.$cellFront = $cellFront;
+exports.$front = $front;
 exports.$gameArrow = $gameArrow;
 
 /***/ }),
@@ -10472,37 +10476,7 @@ exports.$gameArrow = $gameArrow;
 
 var _AnimaliaClass = __webpack_require__(3);
 
-var _AnimaliaClass2 = _interopRequireDefault(_AnimaliaClass);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var $ = __webpack_require__(0);
-
-var animalia = new _AnimaliaClass2.default(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
-
-// var person =(function(){
-//   var name = "Radek";
-//   function giveName(){
-//     alert(name);
-//   };
-//   return{
-//     giveName: giveName
-//   }
-// })();
-// console.log(person.giveName());
-// // person.name = 'Tomek';
-
-
-// $('.box3').on('click', function(e){
-//
-// })
-// $('.box2').on('click', function(e){
-//
-// })
-// $('.box1').on('click', function(e){
-//   $(this).children().remove();
-//
-// })
 
 /***/ }),
 /* 3 */
@@ -10514,6 +10488,7 @@ var animalia = new _AnimaliaClass2.default(['assets/images/animal-dog.jpg', 'ass
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.animalia = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10523,8 +10498,6 @@ var Values = _interopRequireWildcard(_Values);
 
 var _Choices = __webpack_require__(4);
 
-var Choices = _interopRequireWildcard(_Choices);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10532,21 +10505,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var $ = __webpack_require__(0);
 
 var Animalia = function () {
-  function Animalia(animalGallery, animalNames, number) {
+  function Animalia(animalGallery, animalNames) {
     _classCallCheck(this, Animalia);
 
     this.animalNames = animalNames;
     this.animalGallery = animalGallery;
-
     Values.$startButton.fadeTo('slow', 1);
-    this.events();
+    this.mainEvent();
   }
+
   //-------------------------------------GAME BEGINS
 
 
   _createClass(Animalia, [{
-    key: 'events',
-    value: function events() {
+    key: 'mainEvent',
+    value: function mainEvent() {
       var _this = this;
 
       Values.$startButton.click(function () {
@@ -10566,14 +10539,15 @@ var Animalia = function () {
         cells += '<div class="cell">\n      <div class="front"><p>' + arrSort[i] + '</p></div>\n      <div class="back"><img src="assets/images/animal-' + arrSort[i] + '.jpg" alt="' + arrSort[i] + '"></div>\n      </div>';
       }
       $('.board').css('display', 'flex').html(cells);
-      /*with opacity 0 cursor disappeared below start button due to cursor:none*/
+      /*not optimal performancewise, but with opacity 0
+      cursor disappeared below start button due to cursor:none on b*/
     }
   }, {
     key: 'startGame',
     value: function startGame() {
-      this.cellToClick = $('.cell'); /*here not in constructor cause
-                                     they dont exist until createRandomBoard*/
-      this.cellFront = $('.front');
+      Values.$front = $('.front');
+      Values.$cell = $('.cell'); /*here again cause those from Values
+                                 dont exist until createRandomBoard*/
       Values.$startButton.hide();
       Values.$gameArea.addClass('gamearea__visible');
       this.getUserChoice();
@@ -10587,12 +10561,10 @@ var Animalia = function () {
       var userChoice = void 0;
       var that = this;
       this.showAnimal();
-      this.cellToClick.one('click', function (e) {
+      Values.$cell.one('click', function (e) {
         /* one turns off click for clicked
         element, off('click') in Choices does that for the rest of the cells */
         userChoice = $(this).children().text();
-        console.log(userChoice);
-        console.log(that.animalGallery[Values.index]);
         e.stopImmediatePropagation();
 
         //-------------------------------------------IS CHOICE RIGHT OR WRONG
@@ -10600,21 +10572,16 @@ var Animalia = function () {
         if (that.animalGallery[Values.index] === "assets/images/animal-" + userChoice + ".jpg" && userChoice !== "") {
           //-------------------------------------------RIGHT CHOICE
           $(this).addClass('cell__flipped');
-          that.cellFront.addClass('front__non-hover');
-          Choices.rightChoice(function () {
-            setTimeout(function () {
-              console.log(that);
-              Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("");
-              that.cellFront.removeClass('front__non-hover');
-              that.getNextChoice();
-            }, 1200);
+          Values.$front.addClass('front__non-hover');
+          '' + (0, _Choices.rightChoice)(function () {
+            that.getNextChoice();
           });
         } else {
 
           //-------------------------------------------WRONG CHOICE
 
-          Choices.wrongChoice();
-          that.cellToClick.removeClass('cell--avoidClicks');
+          '' + (0, _Choices.wrongChoice)();
+          Values.$cell.removeClass('cell--avoidClicks');
         }
       });
     }
@@ -10622,13 +10589,12 @@ var Animalia = function () {
     key: 'getNextChoice',
     value: function getNextChoice() {
       Values.$gameArrow.removeClass('rotate').addClass('animated bounceInLeft');
-
       this.animalGallery.splice(Values.index, 1); // to avoid repeats
       //--------------------------------------------------------------GAME ENDS
       var galleryLen = this.animalGallery.length;
       var that = this;
       if (galleryLen < 1) {
-        Choices.gameEnds();
+        '' + (0, _Choices.gameEnds)();
       }
       this.getUserChoice();
     }
@@ -10648,7 +10614,9 @@ var Animalia = function () {
   return Animalia;
 }();
 
-exports.default = Animalia;
+var animalia = exports.animalia = function () {
+  new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
+}();
 
 /***/ }),
 /* 4 */
@@ -10671,27 +10639,33 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var $ = __webpack_require__(0);
 
 
-var $cell = $('.cell');
-var $front = $('.front');
-
 var rightChoice = function rightChoice(cb) {
-  $cell.off('click');
-  $front.addClass('front__non-hover');
+  var that = undefined;
+  Values.$cell.off('click');
+  Values.$front.addClass('front__non-hover');
   Values.$message.addClass('message--is-visible animated bounceInLeft').text('good job!').one('animationend', function () {
-    Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate');
-    Values.$message.addClass('bounceOutUp');
-    Values.$animalShowing.fadeOut(1200);
-    cb();
+    Values.$gameArrow.removeClass('animated bounceInLeft').addClass('rotate').queue(function () {
+      Values.$message.addClass('bounceOutUp');
+      Values.$animalShowing.fadeOut(900);
+      $(this).dequeue();
+    });
+    setTimeout(function () {
+      Values.$message.removeClass('animated bounceInLeft bounceOutUp').text("").queue(function () {
+        cb();
+        $(this).dequeue();
+      });
+      Values.$front.removeClass('front__non-hover');
+    }, 950);
   }); //with on() fadeOut would fire even after a wrong choice due to message animation!
 };
 
 var wrongChoice = function wrongChoice() {
-  $cell.addClass('cell--avoidClicks');
-  $front.addClass('front__non-hover');
+  Values.$cell.addClass('cell--avoidClicks');
+  Values.$front.addClass('front__non-hover');
   Values.$message.addClass('message--is-visible animated bounceInLeft').text('wrong, try again!').one('animationend', function () {
     $(this).removeClass('animated bounceInLeft');
-    $front.removeClass('front__non-hover');
-    $cell.removeClass('cell--avoidClicks');
+    Values.$front.removeClass('front__non-hover');
+    Values.$cell.removeClass('cell--avoidClicks');
   });
 };
 
