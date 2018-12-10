@@ -421,6 +421,8 @@ img {
   }
 
 .site-header__wrapper{
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
   overflow: hidden;
     padding-left: 18px;
@@ -486,10 +488,20 @@ img {
   opacity: 0;
   /* will be changed by fadeTo()*/
   margin-top: 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-transition: opacity .5s linear;
   transition: opacity .5s linear;
 }
 
@@ -502,17 +514,31 @@ img {
 
 .gamearea__columns {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
 @media(min-width: 450px) {
 
 .gamearea__columns {
-      flex-direction: row;
-      align-items: center
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center
   }
   }
 
@@ -539,9 +565,15 @@ img {
   }
 
 .gamearea__pointer.bounceInLeft, .gamearea__pointer.rotate {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
     }
 
 /* without centering pointer
@@ -700,10 +732,24 @@ img {
   width: 90vw;
   height: 50vh;
   display: none;
-  flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   cursor: none;
+  -webkit-transition: all 1s linear;
   transition: all 1s linear;
+
+  /*-------------------CELLS*/
 }
+
+.board::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+/*for IE floats*/
 
 @media(min-width: 768px) {
 
@@ -726,29 +772,8 @@ img {
 }
   }
 
-/*-------------------CELLS*/
-
-.board>div {
-    flex: 25%;
-  }
-
-@media(min-width: 450px) {
-  }
-
-@media(min-width: 768px) {
-
-.board>div {
-      flex: 25%
-  }
-  }
-
-@media(min-width: 976px) {
-  }
-
-@media(min-width: 1024px) {
-  }
-
 .cell {
+  position: relative;
   margin: auto;
   border: white 1px solid;
   height: 25%;
@@ -756,6 +781,7 @@ img {
   display: inline-block;
   text-align: center;
   /*transition: all .5s ease-in-out;*/
+  -webkit-transition: -webkit-transform .7s linear;
   transition: -webkit-transform .7s linear;
   transition: transform .7s linear;
   transition: transform .7s linear, -webkit-transform .7s linear;
@@ -773,13 +799,19 @@ img {
   z-index: 333;
   width: 100%;
   height: 100%;
-  position: absolute;
-  background: #000;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  position: absolute;
+  background: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 /*flex to make animal names always appear in the center
@@ -788,6 +820,13 @@ img {
 .front:hover {
     cursor: pointer;
   }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+.front:hover {
+      background-color: #e5e5e5
+  }
+    }
 
 @media(min-width: 768px) {
 
@@ -839,10 +878,14 @@ img {
   background-color: #000;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
 }
 
 .message {
@@ -894,11 +937,17 @@ img {
   border: 2px solid black;
   background-color: #D8D79F;
   box-shadow: 0px 5px 14px 1px #000;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .finalMessage.animated {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     top: 5%;
   }
