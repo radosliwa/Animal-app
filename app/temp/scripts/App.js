@@ -18769,6 +18769,7 @@ var Animalia = function () {
           //-------------------------------------------RIGHT CHOICE
           $(this).addClass('cell__flipped');
           Values.$front.addClass('front__non-hover');
+
           '' + (0, _Choices.rightChoice)(function () {
             that.getNextChoice();
           });
@@ -18788,6 +18789,7 @@ var Animalia = function () {
       this.animalGallery.splice(Values.index, 1); // to avoid repeats
       //--------------------------------------------------------------GAME ENDS
       var galleryLen = this.animalGallery.length;
+
       var that = this;
       if (galleryLen < 1) {
         '' + (0, _Choices.gameEnds)();

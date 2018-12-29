@@ -63,6 +63,7 @@ class Animalia{
         //-------------------------------------------RIGHT CHOICE
         $(this).addClass('cell__flipped');
         Values.$front.addClass('front__non-hover');
+        
         `${rightChoice(function(){
           that.getNextChoice();
             })}`;
@@ -81,6 +82,7 @@ class Animalia{
     this.animalGallery.splice(Values.index,1);  // to avoid repeats
     //--------------------------------------------------------------GAME ENDS
     let galleryLen = this.animalGallery.length;
+
     let that = this;
     if(galleryLen<1){
       `${gameEnds()}`;
