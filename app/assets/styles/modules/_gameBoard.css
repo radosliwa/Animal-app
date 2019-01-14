@@ -10,8 +10,8 @@
   height: 50vh;
   display: none;
   flex-flow: row wrap;
-  cursor: none;
-  transition: all 1s linear;
+  cursor: pointer;
+  /* transition: all .3s linear; */
   @mixin clearfix;
 
   /*for IE floats*/
@@ -33,31 +33,26 @@
 .cell {
   position: relative;
   margin: auto;
+  overflow: hidden;
   border: white 1px solid;
   height: 25%;
   width: 25%;
-  display: inline-block;
   text-align: center;
-  /*transition: all .5s ease-in-out;*/
   transition: transform .7s linear;
   transform-style: preserve-3d;
 
   &__flipped {
-    cursor: pointer;
+    cursor: none;
     transform: rotateY(180deg);
 
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      .front {
-        color: #000;
-        opacity: 0;
-        transition: opacity 1s ease-in;
+    .front {
+      color: #000;
+      opacity: 0;
+      transition: opacity 1s ease-in;
 
-        &:hover {
-          background-color: #000;
-        }
+      &:hover {
+        background-color: #000;
       }
-
-      .back {}
     }
   }
 }
@@ -66,9 +61,8 @@
   z-index: 333;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   position: absolute;
-  background: #000;
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;

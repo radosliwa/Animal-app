@@ -18813,8 +18813,10 @@ var Animalia = function () {
 }();
 
 var animalia = exports.animalia = function () {
-  new Animalia(['assets/images/animal-dog.jpg', 'assets/images/animal-racoon.jpg', 'assets/images/animal-cat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
+  new Animalia(['assets/images/animal-rat.jpg'], ['cat', 'dog', 'beaver', 'deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig', 'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 }();
+// ,'assets/images/animal-rat.jpg','assets/images/animal-goose.jpg', 'assets/images/animal-racoon.jpg','assets/images/animal-monkey.jpg',
+// 'assets/images/animal-cat.jpg'
 
 /***/ }),
 /* 286 */

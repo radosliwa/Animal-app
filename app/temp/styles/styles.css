@@ -509,6 +509,7 @@ img {
       -ms-flex-flow: column;
           flex-flow: column;
   -webkit-transition: opacity .5s linear;
+  -o-transition: opacity .5s linear;
   transition: opacity .5s linear;
 }
 
@@ -660,13 +661,14 @@ img {
 @media(min-width: 768px) {
 
 .gamearea__picture {
-      width: 160px;
-      height: 160px;
+      max-width: 160px;
       border: 6px solid rgba(255, 255, 255, .3);
       -webkit-box-shadow: 0px 5px 18px 1px #000;
               box-shadow: 0px 5px 18px 1px #000
   }
   }
+
+.gamearea__picture>img {}
 
 .rotate {
   -webkit-animation: rotate 150ms ease-out 5;
@@ -746,12 +748,12 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  cursor: none;
-  -webkit-transition: all 1s linear;
-  transition: all 1s linear;
+  cursor: pointer;
 
   /*-------------------CELLS*/
 }
+
+/* transition: all .3s linear; */
 
 .board::after {
     content: "";
@@ -785,14 +787,14 @@ img {
 .cell {
   position: relative;
   margin: auto;
+  overflow: hidden;
   border: white 1px solid;
   height: 25%;
   width: 25%;
-  display: inline-block;
   text-align: center;
-  /*transition: all .5s ease-in-out;*/
   -webkit-transition: -webkit-transform .7s linear;
   transition: -webkit-transform .7s linear;
+  -o-transition: transform .7s linear;
   transition: transform .7s linear;
   transition: transform .7s linear, -webkit-transform .7s linear;
   -webkit-transform-style: preserve-3d;
@@ -800,34 +802,29 @@ img {
 }
 
 .cell__flipped {
-    cursor: pointer;
+    cursor: none;
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
   }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      .cell__flipped .front {
-        color: #000;
-        opacity: 0;
-        -webkit-transition: opacity 1s ease-in;
-        transition: opacity 1s ease-in;
-      }
-
-        .cell__flipped .front:hover {
-          background-color: #000;
-        }
-
-      .cell__flipped .back {}
+.cell__flipped .front {
+      color: #000;
+      opacity: 0;
+      -webkit-transition: opacity 1s ease-in;
+      -o-transition: opacity 1s ease-in;
+      transition: opacity 1s ease-in;
     }
+
+.cell__flipped .front:hover {
+        background-color: #000;
+      }
 
 .front {
   z-index: 333;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   position: absolute;
-  background: #000;
+  background-color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
