@@ -22,9 +22,6 @@ gulp.task('watch', function(){
 
   watch('./app/assets/scripts/**/*.js', function(){
     gulp.start('scriptsRefresh');
-    // return gulp.src('./app/assets/scripts/**/*.js')
-    // .pipe(gulp.dest('./app/temp/scripts'));
-    // browserSync.reload();
   });
 });
 

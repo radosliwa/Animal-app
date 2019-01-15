@@ -17,7 +17,7 @@
   }
 
   @mixin atSuperLarge {
-    width: 50vw;
+    width: 45vw;
   }
 
   @media (max-height:550px) {

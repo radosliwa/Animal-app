@@ -100,9 +100,6 @@ class Animalia{
   }
 }
 export const animalia = (function() {
-  new Animalia(['assets/images/animal-cat.jpg','assets/images/animal-dog.jpg','assets/images/animal-beaver.jpg', 'assets/images/animal-deer.jpg','assets/images/animal-goose.jpg', 'assets/images/animal-hare.jpg','assets/images/animal-hen.jpg','assets/images/animal-horse.jpg',
-  'assets/images/animal-lizard.jpg','assets/images/animal-monkey.jpg', 'assets/images/animal-pig.jpg',
-  'assets/images/animal-racoon.jpg', 'assets/images/animal-rat.jpg','assets/images/animal-seal.jpg','assets/images/animal-snake.jpg',
-  'assets/images/animal-dolphin.jpg'],['cat', 'dog', 'beaver','deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig',
+  new Animalia(['assets/images/animal-horse.jpg'],['cat', 'dog', 'beaver','deer', 'goose', 'hare', 'hen', 'horse', 'lizard', 'monkey', 'pig',
   'racoon', 'rat', 'seal', 'snake', 'dolphin']);
 })();
