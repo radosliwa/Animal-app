@@ -67,10 +67,12 @@
 
       @mixin atSmall {
         display: inline-block;
-        margin: 0 4vw;
+        margin: 1% 4vw 0 4vw;
       }
 
-      @mixin atMedium {}
+      @mixin atMedium {
+        margin-top: 2%;
+      }
 
       @mixin atLarge {}
     }
@@ -145,9 +147,10 @@
     background-color: #D8D79F;
 
     @mixin atMedium {
-      max-width: 160px;
       border: 6px solid rgba(255, 255, 255, .3);
       box-shadow: 0px 5px 18px 1px #000;
+      width: 160px;
+      height: 160px;
     }
 
     &>img {}

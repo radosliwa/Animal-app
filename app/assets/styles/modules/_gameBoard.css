@@ -11,16 +11,13 @@
   display: none;
   flex-flow: row wrap;
   cursor: pointer;
-  /* transition: all .3s linear; */
-  @mixin clearfix;
 
-  /*for IE floats*/
   @mixin atMedium {
     width: 60vw;
   }
 
   @mixin atSuperLarge {
-    width: 40vw;
+    width: 50vw;
   }
 
   @media (max-height:550px) {
