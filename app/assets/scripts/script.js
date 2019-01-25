@@ -1,4 +1,8 @@
 var $ = require('jquery');
-// import "@babel/polyfill";
 
-import {animalia} from './AnimaliaClass';
+
+import {
+  animalia
+} from './AnimaliaClass';
+
+animalia();

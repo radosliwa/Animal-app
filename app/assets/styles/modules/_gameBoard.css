@@ -37,9 +37,9 @@
   text-align: center;
   transition: transform .7s linear;
   transform-style: preserve-3d;
+  cursor: none;
 
   &__flipped {
-    cursor: none;
     transform: rotateY(180deg);
 
     .front {
