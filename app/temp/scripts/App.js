@@ -18667,6 +18667,7 @@ var $ = __webpack_require__(58);
 var index = void 0;
 var $front = void 0;
 var $cell = void 0;
+var counter = 0;
 
 var Animalia = function () {
   function Animalia(animalGallery, animalNames) {
@@ -18744,12 +18745,17 @@ var Animalia = function () {
         } else {
 
           //-------------------------------------------WRONG CHOICE
+          counter++;
+
+          $('.mistakesCounter').removeClass('mistakesCounter--displayCounter animated bounceInRight bounceOutRight').addClass('mistakesCounter--displayCounter animated bounceInRight').text('Mistakes: ' + counter);
+
           $cell.addClass('cell--avoidClicks');
           $front.addClass('front__non-hover');
           _Choices.$message.addClass('message--is-visible animated bounceInLeft').text('wrong, try again!').one('animationend', function () {
             $(this).removeClass('animated bounceInLeft');
             $front.removeClass('front__non-hover');
             $cell.removeClass('cell--avoidClicks');
+            $('.mistakesCounter').addClass('bounceOutRight');
           });
         }
       });
@@ -18765,6 +18771,7 @@ var Animalia = function () {
       var that = this;
       if (galleryLen < 1) {
         (0, _Choices.gameEnds)();
+        $('.mistakesCounter').removeClass('mistakesCounter--displayCounter animated bounceInRight bounceOutRight').addClass('mistakesCounter--displayCounter animated bounceInRight').text('Mistakes: ' + counter);
       }
       this.getUserChoice();
     }

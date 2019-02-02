@@ -44,3 +44,22 @@
     /* margin: 40% auto 0 auto; */
   }
 }
+
+.mistakesCounter {
+  position: absolute;
+  top: 10%;
+  right: 30%;
+  color: #FFF;
+  background-color: #000;
+  border: 2px solid #FFF;
+  padding: 1%;
+  display: none;
+
+  &--displayCounter {
+    display: block;
+
+    &.bounceOutRight {
+      animation-delay: .7s;
+    }
+  }
+}

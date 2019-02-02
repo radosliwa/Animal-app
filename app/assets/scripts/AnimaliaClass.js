@@ -9,7 +9,7 @@ import {
   $message,
   $animalShowing,
   $finalMessage,
-
+  $mistakesCounter,
   $gameArrow,
   rightChoice,
   wrongChoice,
@@ -20,7 +20,7 @@ import {
 let index;
 let $front;
 let $cell;
-
+let counter = 0;
 class Animalia {
   constructor(animalGallery, animalNames) {
     this.animalNames = animalNames;
@@ -87,6 +87,12 @@ class Animalia {
       } else {
 
         //-------------------------------------------WRONG CHOICE
+        counter++;
+
+        $('.mistakesCounter').removeClass('mistakesCounter--displayCounter animated bounceInRight bounceOutRight')
+          .addClass('mistakesCounter--displayCounter animated bounceInRight')
+          .text('Mistakes: ' + counter);
+
         $cell.addClass('cell--avoidClicks');
         $front.addClass('front__non-hover');
         $message.addClass('message--is-visible animated bounceInLeft').text('wrong, try again!')
@@ -94,6 +100,8 @@ class Animalia {
             $(this).removeClass('animated bounceInLeft');
             $front.removeClass('front__non-hover');
             $cell.removeClass('cell--avoidClicks');
+            $('.mistakesCounter').addClass('bounceOutRight')
+
           });
       }
     });
@@ -108,6 +116,9 @@ class Animalia {
     let that = this;
     if (galleryLen < 1) {
       gameEnds();
+      $('.mistakesCounter').removeClass('mistakesCounter--displayCounter animated bounceInRight bounceOutRight')
+        .addClass('mistakesCounter--displayCounter animated bounceInRight')
+        .text('Mistakes: ' + counter);
     }
     this.getUserChoice();
   }
