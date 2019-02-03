@@ -22,7 +22,7 @@ gulp.task('delDocs', function() {
 
 
 gulp.task('optimizePics', ['delDocs'], function() {
-  return gulp.src('./app/assets/images/**/*')
+  return gulp.src('./app/assets/images/*.jpg')
     .pipe(imageMin({
       progressive: true,
       interlaced: true,
