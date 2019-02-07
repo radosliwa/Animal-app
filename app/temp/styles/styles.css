@@ -746,8 +746,8 @@ img {
   border-radius: 10%;
   overflow: hidden;
   color: white;
-  width: 90vw;
-  height: 50vh;
+  width: 80vw;
+  height: 45vh;
   display: none;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -775,7 +775,7 @@ img {
 @media (max-height:550px) {
 
 .board {
-    height: 80vh
+    height: 60vh
 }
   }
 

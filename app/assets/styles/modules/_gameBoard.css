@@ -6,8 +6,8 @@
   border-radius: 10%;
   overflow: hidden;
   color: white;
-  width: 90vw;
-  height: 50vh;
+  width: 80vw;
+  height: 45vh;
   display: none;
   flex-flow: row wrap;
   cursor: pointer;
@@ -21,7 +21,7 @@
   }
 
   @media (max-height:550px) {
-    height: 80vh;
+    height: 60vh;
   }
 
   /*-------------------CELLS*/
